@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Arctic Edits — GFX Designer</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">AE</div>
+        <div>
+          <h1>Arctic Edits</h1>
+          <p>GFX Designer</p>
+        </div>
+      </div>
+      <nav>
+        <button class="btn">About</button>
+        <button class="btn">Works</button>
+        <button class="btn primary" id="hireBtn">Hire me</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="intro">
+          <h2>Clean visuals. Bold statements.</h2>
+          <p>Hi, I'm Arctic Edits. I design GFX, banners, designs, and more.</p>
+          <div class="cta">
+            <button class="btn primary" onclick="scrollToWorks()">View my work</button>
+          </div>
+
+          <div class="tools">
+            <div class="tag">Photoshop</div>
+            <div class="tag">After Effects</div>
+            <div class="tag">Blender</div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="preview">
+            <div class="preview-header">
+              <div>Featured</div>
+              <div>2025 • Banner</div>
+            </div>
+            <div class="mock" style="background-image:url('https://i.ibb.co/KxSq5tXq/GOC-00000.png')"></div>
+            <div class="preview-footer">Global Occult Coalition Banner</div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="works">
+        <h3>Selected Works</h3>
+        <div class="grid" id="grid"></div>
+      </section>
+
+      <section class="section" id="contactSection">
+        <h3>Let's make something cool</h3>
+        <p class="muted">Available for commissions. Reach out directly at <strong>arcticeditsyt@gmail.com</strong>.</p>
+      </section>
+
+    </main>
+
+    <footer>
+      <div>© Arctic Edits — GFX Design</div>
+    </footer>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-card" id="modalCard">
+      <button class="close" onclick="closeModal()">✕</button>
+      <div id="modalImages"></div>
+      <div class="modal-footer">
+        <div id="modalTitle">Title</div>
+        <div>Arctic Edits</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-modal" id="contactModal">
+    <div class="contact-card">
+      <button class="close" id="closeContact">✕</button>
+      <h3>Contact Me</h3>
+      <p class="muted">You can reach me on Discord at <strong>@arcticedits</strong> or via email at <strong>arcticeditsyt@gmail.com</strong>.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
