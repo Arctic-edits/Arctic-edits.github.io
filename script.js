@@ -18,12 +18,21 @@ const works = [
 function renderWorks(){
   const grid = document.getElementById('grid');
   works.forEach((w,i)=>{
-    const el = document.createElement('div'); el.className='work';
+    const el = document.createElement('div'); 
+    el.className='work';
     el.innerHTML = `
       <div class="thumb" style="background-image:url('${w.src[0]}')"></div>
-      <div class="meta"><div><strong>${w.title}</strong><div class="tag">${w.tag}</div></div><div><button class='btn' onclick='openModal(${i})'>Open</button></div></div>`;
+      <div class="meta">
+        <div>
+          <strong>${w.title}</strong>
+          <div class="tag">${w.tag}</div>
+        </div>
+        <div>
+          <button class='btn' onclick='openModal(${i})'>Open</button>
+        </div>
+      </div>`;
     grid.appendChild(el);
-  })
+  });
 }
 
 function openModal(i){
@@ -35,29 +44,38 @@ function openModal(i){
   modal.classList.add('show');
 }
 
-function closeModal(){document.getElementById('modal').classList.remove('show')}
-document.getElementById('modal').addEventListener('click', e=>{ if(e.target.id==='modal') closeModal() })
+function closeModal(){ 
+  document.getElementById('modal').classList.remove('show'); 
+}
 
-function scrollToWorks(){ document.getElementById('works').scrollIntoView({behavior:'smooth'}) }
+document.getElementById('modal').addEventListener('click', e=>{
+  if(e.target.id==='modal') closeModal();
+});
+
+function scrollToWorks(){ 
+  document.getElementById('works').scrollIntoView({behavior:'smooth'}); 
+}
 
 // Contact Modal Logic
-const hireBtn = document.getElementById('hireBtn');
-const contactModal = document.getElementById('contactModal');
-const closeContact = document.getElementById('closeContact');
-
 document.addEventListener('DOMContentLoaded', () => {
   const hireBtn = document.getElementById('hireBtn');
   const contactModal = document.getElementById('contactModal');
   const closeContact = document.getElementById('closeContact');
 
-  hireBtn.addEventListener('click', () => {
-    contactModal.classList.add('show');
+  hireBtn.addEventListener('click', () => contactModal.classList.add('show'));
+  closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
+
+  // Featured image fullscreen
+  const featuredImage = document.getElementById('featuredImage');
+  featuredImage.addEventListener('click', () => {
+    if (featuredImage.requestFullscreen) {
+      featuredImage.requestFullscreen();
+    } else if (featuredImage.webkitRequestFullscreen) { // Safari
+      featuredImage.webkitRequestFullscreen();
+    } else if (featuredImage.msRequestFullscreen) { // IE11
+      featuredImage.msRequestFullscreen();
+    }
   });
 
-  closeContact.addEventListener('click', () => {
-    contactModal.classList.remove('show');
-  });
+  renderWorks();
 });
-
-
-renderWorks();
