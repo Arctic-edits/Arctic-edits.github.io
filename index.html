@@ -19,14 +19,14 @@
         </div>
       </div>
       <nav>
-        <button class="btn primary" id="hireBtn">Hire me</button>
+        <a href="contact.html" class="btn primary">Hire me</a>
       </nav>
     </header>
 
     <main>
       <section class="hero">
         <div class="intro">
-          <h2>Propaganda at its finest.</h2>
+          <h2>Clean visuals. Bold statements.</h2>
           <p>Hi, I'm Arctic Edits. I design GFX, banners, designs, and more.</p>
           <div class="cta">
             <button class="btn primary" onclick="scrollToWorks()">View my work</button>
@@ -57,15 +57,15 @@
       </section>
 
       <section class="section" id="otherWorks">
-        <h3>Other Projects</h3>
+        <h3>Other Projects (Work in Progress)</h3>
         <div class="grid">
           <div class="work">
-            <div class="thumb" style="background-image:url('https://i.ibb.co/kg026g97/610-00000.png')"></div>
-            <div class="meta"><div><strong>Zone: 14 Game Development</strong><div class="tag">Other Work</div></div></div>
+            <div class="thumb" style="background-image:url('https://i.ibb.co/placeholder.jpg')"></div>
+            <div class="meta"><div><strong>W.I.P</strong><div class="tag">Other Project</div></div></div>
           </div>
           <div class="work">
-            <div class="thumb" style="background-image:url('https://i.ibb.co/d0YZnR5f/room-00000.jpg')"></div>
-            <div class="meta"><div><strong>TikTok Edits</strong><div class="tag">Other Work</div></div></div>
+            <div class="thumb" style="background-image:url('https://i.ibb.co/placeholder2.jpg')"></div>
+            <div class="meta"><div><strong>W.I.P</strong><div class="tag">Other Project</div></div></div>
           </div>
         </div>
       </section>
@@ -88,35 +88,23 @@
     </div>
   </div>
 
-  <div class="contact-modal" id="contactModal">
-    <div class="contact-card">
-      <button class="close" id="closeContact">✕</button>
-      <h3>Contact Me</h3>
-      <p class="muted">You can reach me on Discord at <strong>@arcticedits</strong> or via email at <strong>arcticeditsyt@gmail.com</strong>.</p>
-    </div>
-  </div>
-
   <script src="script.js"></script>
   <script>
-    // Ensure elements exist before attaching events
     document.addEventListener('DOMContentLoaded', () => {
-      const hireBtn = document.getElementById('hireBtn');
-      const contactModal = document.getElementById('contactModal');
-      const closeContact = document.getElementById('closeContact');
+      renderWorks();
 
-      hireBtn.addEventListener('click', () => contactModal.classList.add('show'));
-      closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
+      // Featured image fullscreen
+      const featuredImage = document.getElementById('featuredImage');
+      featuredImage.addEventListener('click', () => {
+        if (featuredImage.requestFullscreen) {
+          featuredImage.requestFullscreen();
+        } else if (featuredImage.webkitRequestFullscreen) {
+          featuredImage.webkitRequestFullscreen();
+        } else if (featuredImage.msRequestFullscreen) {
+          featuredImage.msRequestFullscreen();
+        }
+      });
     });
-
-    function openFullscreen(el) {
-      if (el.requestFullscreen) {
-        el.requestFullscreen();
-      } else if (el.webkitRequestFullscreen) { /* Safari */
-        el.webkitRequestFullscreen();
-      } else if (el.msRequestFullscreen) { /* IE11 */
-        el.msRequestFullscreen();
-      }
-    }
   </script>
 </body>
 </html>
