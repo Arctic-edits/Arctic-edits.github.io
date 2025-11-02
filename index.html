@@ -19,8 +19,6 @@
         </div>
       </div>
       <nav>
-        <button class="btn">About</button>
-        <button class="btn">Works</button>
         <button class="btn primary" id="hireBtn">Hire me</button>
       </nav>
     </header>
@@ -28,7 +26,7 @@
     <main>
       <section class="hero">
         <div class="intro">
-          <h2>Propaganda at its finest.</h2>
+          <h2>Clean visuals. Bold statements.</h2>
           <p>Hi, I'm Arctic Edits. I design GFX, banners, designs, and more.</p>
           <div class="cta">
             <button class="btn primary" onclick="scrollToWorks()">View my work</button>
@@ -47,7 +45,7 @@
               <div>Featured</div>
               <div>2025 • Banner</div>
             </div>
-            <div class="mock" style="background-image:url('https://i.ibb.co/KxSq5tXq/GOC-00000.png')"></div>
+            <div class="mock" id="featuredImage" style="background-image:url('https://i.ibb.co/KxSq5tXq/GOC-00000.png')" onclick="openFullscreen(this)"></div>
             <div class="preview-footer">Global Occult Coalition Banner</div>
           </div>
         </aside>
@@ -58,9 +56,18 @@
         <div class="grid" id="grid"></div>
       </section>
 
-      <section class="section" id="contactSection">
-        <h3>Let's make something cool</h3>
-        <p class="muted">Available for commissions. You can reach me on Discord at <strong>@arcticedits</strong> or via email at <strong>arcticeditsyt@gmail.com</strong>.</p>
+      <section class="section" id="otherWorks">
+        <h3>Other Projects</h3>
+        <div class="grid">
+          <div class="work">
+            <div class="thumb" style="background-image:url('https://i.ibb.co/kg026g97/610-00000.png')"></div>
+            <div class="meta"><div><strong>Zone: 14 Game Development</strong><div class="tag">Other Work</div></div></div>
+          </div>
+          <div class="work">
+            <div class="thumb" style="background-image:url('https://i.ibb.co/d0YZnR5f/room-00000.jpg')"></div>
+            <div class="meta"><div><strong>TikTok Edits</strong><div class="tag">Other Work</div></div></div>
+          </div>
+        </div>
       </section>
 
     </main>
@@ -90,5 +97,26 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    // Ensure elements exist before attaching events
+    document.addEventListener('DOMContentLoaded', () => {
+      const hireBtn = document.getElementById('hireBtn');
+      const contactModal = document.getElementById('contactModal');
+      const closeContact = document.getElementById('closeContact');
+
+      hireBtn.addEventListener('click', () => contactModal.classList.add('show'));
+      closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
+    });
+
+    function openFullscreen(el) {
+      if (el.requestFullscreen) {
+        el.requestFullscreen();
+      } else if (el.webkitRequestFullscreen) { /* Safari */
+        el.webkitRequestFullscreen();
+      } else if (el.msRequestFullscreen) { /* IE11 */
+        el.msRequestFullscreen();
+      }
+    }
+  </script>
 </body>
 </html>
