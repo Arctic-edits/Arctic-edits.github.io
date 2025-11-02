@@ -45,7 +45,19 @@ const hireBtn = document.getElementById('hireBtn');
 const contactModal = document.getElementById('contactModal');
 const closeContact = document.getElementById('closeContact');
 
-hireBtn.addEventListener('click',()=>{ contactModal.classList.add('show') });
-closeContact.addEventListener('click',()=>{ contactModal.classList.remove('show') });
+document.addEventListener('DOMContentLoaded', () => {
+  const hireBtn = document.getElementById('hireBtn');
+  const contactModal = document.getElementById('contactModal');
+  const closeContact = document.getElementById('closeContact');
+
+  hireBtn.addEventListener('click', () => {
+    contactModal.classList.add('show');
+  });
+
+  closeContact.addEventListener('click', () => {
+    contactModal.classList.remove('show');
+  });
+});
+
 
 renderWorks();
