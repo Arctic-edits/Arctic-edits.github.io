@@ -1,5 +1,5 @@
 const works = [
-  {title:'METROPOLITON PD (ER:LC) Commission', tag:'Commission', src:['https://i.ibb.co/d0YZnR5f/room-00000.jpg']},
+  {title:'METROPOLITAN PD (ER:LC) Commission', tag:'Commission', src:['https://i.ibb.co/d0YZnR5f/room-00000.jpg']},
   {title:'Global Occult Coalition — Commission Set', tag:'Commission Series', src:[
     'https://i.ibb.co/KxSq5tXq/GOC-00000.png',
     'https://i.ibb.co/MkXQZSSG/dsada-00000.jpg',
