@@ -1,110 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Arctic Edits — GFX Designer</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arctic Edits — GFX Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">AE</div>
-        <div>
-          <h1>Arctic Edits</h1>
-          <p>GFX Designer</p>
-        </div>
-      </div>
-      <nav>
-        <a href="contact.html" class="btn primary">Hire me</a>
-      </nav>
-    </header>
+  <header class="header">
+    <h1 class="logo">Arctic Edits</h1>
+    <nav class="nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="works.html">My Works</a>
+      <a href="about.html">About & Contact</a>
+    </nav>
+  </header>
 
-    <main>
-      <section class="hero">
-        <div class="intro">
-          <h2>Propaganda at its finest.</h2>
-          <p>Hi, I'm Arctic Edits. I design GFX, banners, designs, and more.</p>
-          <div class="cta">
-            <button class="btn primary" onclick="scrollToWorks()">View my work</button>
-          </div>
-
-          <div class="tools">
-            <div class="tag">Photoshop</div>
-            <div class="tag">After Effects</div>
-            <div class="tag">Blender</div>
-          </div>
-        </div>
-
-        <aside>
-          <div class="preview">
-            <div class="preview-header">
-              <div>Featured</div>
-              <div>2025 • Banner</div>
-            </div>
-            <div class="mock" id="featuredImage" style="background-image:url('https://i.ibb.co/KxSq5tXq/GOC-00000.png')" onclick="openFullscreen(this)"></div>
-            <div class="preview-footer">Global Occult Coalition Banner</div>
-          </div>
-        </aside>
-      </section>
-
-      <section class="section" id="works">
-        <h3>Selected Works</h3>
-        <div class="grid" id="grid"></div>
-      </section>
-
-      <section class="section" id="otherWorks">
-        <h3>Other Projects (Work in Progress)</h3>
-        <div class="grid">
-          <div class="work">
-            <div class="thumb" style="background-image:url('https://i.ibb.co/placeholder.jpg')"></div>
-            <div class="meta"><div><strong>W.I.P</strong><div class="tag">Other Project</div></div></div>
-          </div>
-          <div class="work">
-            <div class="thumb" style="background-image:url('https://i.ibb.co/placeholder2.jpg')"></div>
-            <div class="meta"><div><strong>W.I.P</strong><div class="tag">Other Project</div></div></div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <footer>
-      <div>© Arctic Edits — GFX Design</div>
-    </footer>
-  </div>
-
-  <div class="modal" id="modal">
-    <div class="modal-card" id="modalCard">
-      <button class="close" onclick="closeModal()">✕</button>
-      <div id="modalImages"></div>
-      <div class="modal-footer">
-        <div id="modalTitle">Title</div>
-        <div>Arctic Edits</div>
-      </div>
+  <section class="intro">
+    <div class="intro-content">
+      <h2>Hi, I'm <span class="highlight">Arctic Edits</span>.</h2>
+      <p>I design GFX, banners, designs, and more.</p>
+      <button class="btn primary" onclick="location.href='about.html'">Contact Me</button>
     </div>
-  </div>
+  </section>
 
-  <script src="script.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      renderWorks();
+  <section class="featured-work">
+    <h2>Featured Work</h2>
+    <div class="featured-card">
+      <img src="https://i.ibb.co/KxSq5tXq/GOC-00000.png" alt="Global Occult Coalition Banner" class="featured-img" />
+      <p><strong>Global Occult Coalition Banner</strong></p>
+    </div>
+  </section>
 
-      // Featured image fullscreen
-      const featuredImage = document.getElementById('featuredImage');
-      featuredImage.addEventListener('click', () => {
-        if (featuredImage.requestFullscreen) {
-          featuredImage.requestFullscreen();
-        } else if (featuredImage.webkitRequestFullscreen) {
-          featuredImage.webkitRequestFullscreen();
-        } else if (featuredImage.msRequestFullscreen) {
-          featuredImage.msRequestFullscreen();
-        }
-      });
-    });
-  </script>
+  <section class="works-section">
+    <h2>Commission Sets</h2>
+
+    <div class="work">
+      <h3>METROPOLITON PD (ER:LC)</h3>
+      <a href="https://ibb.co/274JXTkF">
+        <img src="https://i.ibb.co/d0YZnR5f/room-00000.jpg" alt="room-00000" border="0">
+      </a>
+    </div>
+
+    <div class="work">
+      <h3>Global Occult Coalition (Commission Series)</h3>
+      <a href="https://ibb.co/Jjg7cYK7"><img src="https://i.ibb.co/KxSq5tXq/GOC-00000.png" alt="GOC-00000"></a>
+      <a href="https://ibb.co/WvTjG55P"><img src="https://i.ibb.co/MkXQZSSG/dsada-00000.jpg" alt="dsada-00000"></a>
+      <a href="https://ibb.co/bRBm3Kcq"><img src="https://i.ibb.co/przwPLYG/snow-00000.jpg" alt="snow-00000"></a>
+      <a href="https://ibb.co/yTRFs8J"><img src="https://i.ibb.co/h5MF8Kv/PTOLEMY-00000.jpg" alt="PTOLEMY-00000"></a>
+      <a href="https://ibb.co/vvYbtN9Z"><img src="https://i.ibb.co/x8Hy4nZJ/bhgear-00000.jpg" alt="bhgear-00000"></a>
+    </div>
+
+    <div class="work">
+      <h3>Zone: 14 Occult Conflict</h3>
+      <a href="https://ibb.co/QFnvjFCg"><img src="https://i.ibb.co/kg026g97/610-00000.png" alt="610-00000" border="0"></a>
+    </div>
+
+    <div class="work">
+      <h3>The Chaos Insurgency (Commission Series)</h3>
+      <a href="https://ibb.co/nqpBdYqP"><img src="https://i.ibb.co/mrp0Z2rN/TCImr-00000.jpg" alt="TCImr-00000"></a>
+      <a href="https://ibb.co/tTvv6PmG"><img src="https://i.ibb.co/zTBBgHnM/TCIHR-00000.jpg" alt="TCIHR-00000"></a>
+      <a href="https://ibb.co/PsMJ3d56"><img src="https://i.ibb.co/8nbGTHj7/TC3-I-00000.jpg" alt="TC3-I-00000"></a>
+      <a href="https://ibb.co/XZtLC0qF"><img src="https://i.ibb.co/SXBy3YzV/T2-CI-00000.jpg" alt="T2-CI-00000"></a>
+      <a href="https://ibb.co/mVv8RhdJ"><img src="https://i.ibb.co/VcHmLMbV/TCI-00000.jpg" alt="TCI-00000"></a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Arctic Edits. All rights reserved.</p>
+  </footer>
 </body>
 </html>
