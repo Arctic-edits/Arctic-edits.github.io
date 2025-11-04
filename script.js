@@ -43,12 +43,12 @@ function openModal(i){
   document.getElementById('modalTitle').textContent = works[i].title + ' • ' + works[i].tag;
   modal.scrollTop = 0;
   modal.classList.add('show');
-  document.body.classList.add('modal-open'); // disable background scroll
+  document.body.classList.add('modal-open');
 }
 
 function closeModal(){ 
   document.getElementById('modal').classList.remove('show'); 
-  document.body.classList.remove('modal-open'); // re-enable scroll
+  document.body.classList.remove('modal-open');
 }
 
 document.getElementById('modal').addEventListener('click', e=>{
@@ -59,20 +59,21 @@ function scrollToWorks(){
   document.getElementById('works').scrollIntoView({behavior:'smooth'}); 
 }
 
-// Full DOM loaded logic
 document.addEventListener('DOMContentLoaded', () => {
-  const hireBtn = document.getElementById('contactBtn');
-  const contactModal = document.getElementById('contactModal');
-  const closeContact = document.getElementById('closeContact');
-
-  if (hireBtn && contactModal && closeContact) {
-    hireBtn.addEventListener('click', () => contactModal.classList.add('show'));
-    closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
+  // Contact button → redirect to contact page
+  const contactBtn = document.getElementById('contactBtn');
+  if (contactBtn) {
+    contactBtn.addEventListener('click', () => {
+      window.location.href = 'contact.html';
+    });
   }
 
-  // Featured image fullscreen
+  // Fix featured image click fullscreen & display
   const featuredImg = document.getElementById('featuredImage');
   if(featuredImg){
+    featuredImg.style.backgroundSize = 'cover';
+    featuredImg.style.backgroundPosition = 'center';
+    featuredImg.style.borderRadius = '12px';
     featuredImg.addEventListener('click', () => {
       if (featuredImg.requestFullscreen) featuredImg.requestFullscreen();
       else if (featuredImg.webkitRequestFullscreen) featuredImg.webkitRequestFullscreen();
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Button ripple effect
+  // Ripple effect
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
       const ripple = document.createElement('span');
