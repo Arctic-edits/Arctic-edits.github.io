@@ -19,36 +19,35 @@
         </div>
       </div>
       <nav>
-        <button class="btn primary" id="contactBtn" onclick="window.location.href='contact.html'">Contact Me</button>
+        <button class="btn primary" onclick="window.location.href='contact.html'">Contact Me</button>
       </nav>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="intro fade-in">
+      <section class="hero fade-in">
+        <div class="intro">
           <h2>Clean visuals. Bold statements.</h2>
           <p>Hi, I'm Arctic Edits. I design GFX, banners, designs, and more.</p>
           <div class="cta">
             <button class="btn primary" onclick="scrollToWorks()">View my work</button>
           </div>
 
-          <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
-            <div style="font-size:13px;color:var(--muted)">Tools:</div>
-            <div class="tag">Photoshop</div>
-            <div class="tag">After Effects</div>
-            <div class="tag">Blender</div>
+          <div class="tools">
+            <span class="tag">Photoshop</span>
+            <span class="tag">After Effects</span>
+            <span class="tag">Blender</span>
           </div>
         </div>
 
-        <aside class="fade-in">
+        <aside>
           <div class="preview">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div style="font-weight:700">Featured</div>
-              <div style="font-size:12px;color:var(--muted)">2025 • Banner</div>
+            <div class="featured-title">
+              <div>Featured</div>
+              <div>2025 • Banner</div>
             </div>
             <div class="mock featured-img" id="featuredImage" style="background-image:url('https://i.ibb.co/KxSq5tXq/GOC-00000.png')"></div>
-            <div style="display:flex;gap:8px;justify-content:space-between;align-items:center">
-              <div style="font-size:13px;color:var(--muted)">Global Occult Coalition Banner</div>
+            <div class="featured-caption">
+              Global Occult Coalition Banner
             </div>
           </div>
         </aside>
@@ -58,6 +57,25 @@
         <h3>Selected Works</h3>
         <div class="grid" id="grid"></div>
       </section>
+
+      <section class="section" id="otherWorks">
+        <h3>Other Works (W.I.P)</h3>
+        <div class="grid" id="otherGrid">
+          <div class="work fade-in">
+            <div class="thumb" style="background-image:url('https://i.ibb.co/kg026g97/610-00000.png')"></div>
+            <div class="meta">
+              <strong>(W.I.P)</strong>
+            </div>
+          </div>
+          <div class="work fade-in">
+            <div class="thumb" style="background-image:url('https://i.ibb.co/MkXQZSSG/dsada-00000.jpg')"></div>
+            <div class="meta">
+              <strong>(W.I.P)</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <footer>
@@ -68,11 +86,11 @@
   <!-- Project Modal -->
   <div class="modal" id="modal" role="dialog" aria-modal="true">
     <div class="modal-card" id="modalCard">
-      <button style="float:right;background:none;border:none;color:var(--muted);font-weight:700;margin-top:-6px;" onclick="closeModal()">✕</button>
+      <button class="close-btn" onclick="closeModal()">✕</button>
       <div id="modalImages"></div>
-      <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
-        <div style="color:var(--muted);font-size:13px" id="modalTitle">Title</div>
-        <div style="font-weight:700">Arctic Edits</div>
+      <div class="modal-meta">
+        <div id="modalTitle">Title</div>
+        <div>Arctic Edits</div>
       </div>
     </div>
   </div>
