@@ -101,6 +101,22 @@ nav {
   border: none;
 }
 
+/* Ripple effect */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
 /* === HERO SECTION === */
 .hero {
   display: grid;
@@ -110,11 +126,7 @@ nav {
 }
 
 .intro {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.01)
-  );
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
   padding: 28px;
   border-radius: var(--radius);
   backdrop-filter: blur(6px);
@@ -155,56 +167,19 @@ nav {
 /* === TAGS === */
 .tag {
   font-size: 12px;
-  color: var(--muted); /* same muted color as text */
-  background: var(--card); /* same as card background to blend in */
+  color: var(--muted);      /* blend with text */
+  background: var(--card);  /* blend with card */
   padding: 4px 8px;
   border-radius: 8px;
   transition: background 0.3s, color 0.3s;
 }
 
-/* optional hover effect for tags */
 .tag:hover {
   background: rgba(123, 224, 255, 0.1);
   color: var(--accent);
 }
 
-/* === PAGE ANIMATIONS === */
-.fade-in {
-  opacity: 0;
-  transform: translateY(15px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Staggered animations for grid items */
-.grid .work {
-  opacity: 0;
-  transform: translateY(15px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-.grid .work:nth-child(1) { animation-delay: 0.1s; }
-.grid .work:nth-child(2) { animation-delay: 0.2s; }
-.grid .work:nth-child(3) { animation-delay: 0.3s; }
-.grid .work:nth-child(4) { animation-delay: 0.4s; }
-.grid .work:nth-child(5) { animation-delay: 0.5s; }
-/* add more if you have more items */
-
-/* Smooth page transition for contact page */
-.contact-page,
-.contact-card {
-  opacity: 0;
-  transform: translateY(15px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-/* === GRID / WORK SECTIONS === */
+/* === GRID / WORK SECTION === */
 .section {
   margin-top: 28px;
 }
@@ -286,7 +261,6 @@ body.modal-open {
   padding-top: 10px;
 }
 
-/* Close Button */
 .closeModal {
   position: absolute;
   top: 12px;
@@ -319,19 +293,36 @@ footer {
   text-align: center;
 }
 
-/* === BUTTON RIPPLE EFFECT === */
-.btn .ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-  background: rgba(255, 255, 255, 0.3);
+/* === ANIMATIONS === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s ease forwards;
 }
 
-@keyframes ripple {
+.grid .work {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.grid .work:nth-child(1) { animation-delay: 0.1s; }
+.grid .work:nth-child(2) { animation-delay: 0.2s; }
+.grid .work:nth-child(3) { animation-delay: 0.3s; }
+.grid .work:nth-child(4) { animation-delay: 0.4s; }
+.grid .work:nth-child(5) { animation-delay: 0.5s; }
+
+.contact-page,
+.contact-card {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
   to {
-    transform: scale(4);
-    opacity: 0;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -340,11 +331,9 @@ footer {
   .hero {
     grid-template-columns: 1fr;
   }
-
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .wrap {
     padding: 16px;
   }
@@ -354,39 +343,7 @@ footer {
   .grid {
     grid-template-columns: 1fr;
   }
-
   .brand h1 {
     font-size: 16px;
-  }
-}
-
-/* === CONTACT PAGE === */
-.contact-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.contact-card {
-  background: var(--glass);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius);
-  padding: 32px;
-  max-width: 600px;
-  margin: 40px auto;
-  backdrop-filter: blur(8px);
-  animation: fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
