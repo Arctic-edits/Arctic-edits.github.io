@@ -27,7 +27,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:16px;ma
 .brand h1{margin:0;font-size:18px;letter-spacing:0.6px}
 .brand p{margin:0;font-size:13px;color:var(--muted)}
 nav{display:flex;gap:12px}
-.btn{padding:8px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);cursor:pointer;color:var(--muted);font-weight:600;transition:0.2s}
+.btn{padding:8px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);cursor:pointer;color:var(--muted);font-weight:600;position:relative;overflow:hidden;transition:0.2s}
 .btn:hover{opacity:0.8}
 .btn.primary{background:linear-gradient(90deg,var(--accent),#6f9bff);color:#042233;border:none}
 
@@ -59,8 +59,8 @@ nav{display:flex;gap:12px}
 /* Bigger close button */
 .closeModal{
   position:absolute;
-  top:12px;
-  right:12px;
+  top:10px;
+  right:10px;
   background:none;
   border:none;
   color:var(--muted);
@@ -71,6 +71,18 @@ nav{display:flex;gap:12px}
 }
 
 footer{margin-top:24px;color:var(--muted);text-align:center}
+
+/* Ripple effect for buttons */
+.btn .ripple{
+  position:absolute;
+  border-radius:50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background: rgba(255,255,255,0.3);
+}
+@keyframes ripple{
+  to { transform: scale(4); opacity:0;}
+}
 
 @media (max-width:980px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.wrap{padding:16px}}
 @media (max-width:640px){.grid{grid-template-columns:1fr}.brand h1{font-size:16px}}
