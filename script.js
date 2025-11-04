@@ -72,6 +72,22 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (featuredImg.webkitRequestFullscreen) featuredImg.webkitRequestFullscreen();
     else if (featuredImg.msRequestFullscreen) featuredImg.msRequestFullscreen();
   });
+document.addEventListener('DOMContentLoaded', () => {
+  const contactBtn = document.getElementById('contactBtn');
+  const contactModal = document.getElementById('contactModal');
+  const closeContact = document.getElementById('closeContact');
+
+  // Open contact modal every time button is clicked
+  contactBtn.onclick = () => contactModal.classList.add('show');
+  closeContact.onclick = () => contactModal.classList.remove('show');
+
+  // Commission modal
+  const featuredImg = document.getElementById('featuredImage');
+  featuredImg.addEventListener("click", () => {
+    if (featuredImg.requestFullscreen) featuredImg.requestFullscreen();
+    else if (featuredImg.webkitRequestFullscreen) featuredImg.webkitRequestFullscreen();
+    else if (featuredImg.msRequestFullscreen) featuredImg.msRequestFullscreen();
+  });
 
   renderWorks();
 });
