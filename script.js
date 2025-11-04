@@ -1,27 +1,25 @@
 const works = [
-  { title: 'METROPOLITAN PD (ER:LC) Commission', tag: 'Commission', src: ['https://i.ibb.co/d0YZnR5f/room-00000.jpg'] },
-  { title: 'Global Occult Coalition — Commission Set', tag: 'Commission Series', src: [
+  {title:'METROPOLITAN PD (ER:LC) Commission', tag:'Commission', src:['https://i.ibb.co/d0YZnR5f/room-00000.jpg']},
+  {title:'Global Occult Coalition — Commission Set', tag:'Commission Series', src:[
     'https://i.ibb.co/KxSq5tXq/GOC-00000.png',
     'https://i.ibb.co/MkXQZSSG/dsada-00000.jpg',
     'https://i.ibb.co/przwPLYG/snow-00000.jpg',
     'https://i.ibb.co/h5MF8Kv/PTOLEMY-00000.jpg',
-    'https://i.ibb.co/x8Hy4nZJ/bhgear-00000.jpg'
-  ]},
-  { title: 'Zone: 14 Occult Conflict', tag: 'Commission', src: ['https://i.ibb.co/kg026g97/610-00000.png'] },
-  { title: 'Chaos Insurgency — Commission Series', tag: 'Commission Series', src: [
+    'https://i.ibb.co/x8Hy4nZJ/bhgear-00000.jpg']},
+  {title:'Zone: 14 Occult Conflict', tag:'Commission', src:['https://i.ibb.co/kg026g97/610-00000.png']},
+  {title:'Chaos Insurgency — Commission Series', tag:'Commission Series', src:[
     'https://i.ibb.co/mrp0Z2rN/TCImr-00000.jpg',
     'https://i.ibb.co/zTBBgHnM/TCIHR-00000.jpg',
     'https://i.ibb.co/8nbGTHj7/TC3-I-00000.jpg',
     'https://i.ibb.co/SXBy3YzV/T2-CI-00000.jpg',
-    'https://i.ibb.co/VcHmLMbV/TCI-00000.jpg'
-  ]}
+    'https://i.ibb.co/VcHmLMbV/TCI-00000.jpg']}
 ];
 
-function renderWorks() {
+function renderWorks(){
   const grid = document.getElementById('grid');
-  works.forEach((w, i) => {
-    const el = document.createElement('div');
-    el.className = 'work fade-in';
+  works.forEach((w,i)=>{
+    const el = document.createElement('div'); 
+    el.className='work';
     el.innerHTML = `
       <div class="thumb" style="background-image:url('${w.src[0]}')"></div>
       <div class="meta">
@@ -37,94 +35,83 @@ function renderWorks() {
   });
 }
 
-function openModal(i) {
+function openModal(i){
   const modal = document.getElementById('modal');
   const modalImages = document.getElementById('modalImages');
-  modalImages.innerHTML = works[i].src.map(s => `<img src='${s}' alt='${works[i].title}'>`).join('');
-  document.getElementById('modalTitle').textContent = `${works[i].title} • ${works[i].tag}`;
+  modalImages.innerHTML = works[i].src.map(s=>`<img src='${s}' alt='${works[i].title}'>`).join('');
+  document.getElementById('modalTitle').textContent = works[i].title + ' • ' + works[i].tag;
   modal.scrollTop = 0;
   modal.classList.add('show');
 }
 
-function closeModal() {
-  document.getElementById('modal').classList.remove('show');
+function closeModal(){ 
+  document.getElementById('modal').classList.remove('show'); 
+}
+
+document.getElementById('modal').addEventListener('click', e=>{
+  if(e.target.id==='modal') closeModal();
+});
+
+function scrollToWorks(){ 
+  document.getElementById('works').scrollIntoView({behavior:'smooth'}); 
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Render works
   renderWorks();
 
-  // Contact modal
-  const hireBtn = document.getElementById('hireBtn');
-  const contactModal = document.getElementById('contactModal');
-  const closeContact = document.getElementById('closeContact');
-
-  if (hireBtn && contactModal && closeContact) {
-    hireBtn.addEventListener('click', () => contactModal.classList.add('show'));
-    closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
-  }
-
   // Featured image fullscreen
-  const featuredImage = document.getElementById('featuredImage');
-  if (featuredImage) {
-    featuredImage.addEventListener('click', () => {
-      const overlay = document.createElement('div');
-      overlay.style.position = 'fixed';
-      overlay.style.inset = '0';
-      overlay.style.background = 'rgba(0,0,0,0.9)';
-      overlay.style.display = 'flex';
-      overlay.style.alignItems = 'center';
-      overlay.style.justifyContent = 'center';
-      overlay.style.zIndex = '100';
-      overlay.style.cursor = 'zoom-out';
+  const featuredImg = document.getElementById('featuredImage');
+  if (featuredImg) {
+    featuredImg.addEventListener('click', () => {
+      const overlay = document.createElement("div");
+      overlay.style.position = "fixed";
+      overlay.style.inset = "0";
+      overlay.style.background = "rgba(0,0,0,0.9)";
+      overlay.style.display = "flex";
+      overlay.style.alignItems = "center";
+      overlay.style.justifyContent = "center";
+      overlay.style.zIndex = "100";
+      overlay.style.cursor = "zoom-out";
 
-      const img = document.createElement('img');
-      img.src = featuredImage.src || featuredImage.dataset.src;
-      img.style.maxWidth = '90%';
-      img.style.maxHeight = '90%';
-      img.style.borderRadius = '10px';
-      img.style.boxShadow = '0 0 30px rgba(0,0,0,0.6)';
+      const img = document.createElement("img");
+      img.src = featuredImg.style.backgroundImage.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+      img.style.maxWidth = "90%";
+      img.style.maxHeight = "90%";
+      img.style.borderRadius = "10px";
+      img.style.boxShadow = "0 0 30px rgba(0,0,0,0.6)";
 
       overlay.appendChild(img);
       document.body.appendChild(overlay);
 
-      overlay.addEventListener('click', () => overlay.remove());
+      overlay.addEventListener("click", () => overlay.remove());
     });
   }
 
-  // Fade-in observer
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
+  // Fade in animation
+  document.querySelectorAll(".fade-in").forEach((el, i) => {
+    setTimeout(() => el.classList.add("visible"), i * 200);
+  });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  // Button ripple effect
+  document.querySelectorAll(".btn").forEach(btn => {
+    btn.addEventListener("click", function(e) {
+      const ripple = document.createElement("span");
+      ripple.classList.add("ripple");
+      this.appendChild(ripple);
 
-  // Button ripple animation
-  document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      const ripple = document.createElement('span');
-      ripple.classList.add('ripple');
-      btn.appendChild(ripple);
-
-      const x = e.clientX - e.target.offsetLeft;
-      const y = e.clientY - e.target.offsetTop;
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
+      const rect = this.getBoundingClientRect();
+      ripple.style.left = `${e.clientX - rect.left}px`;
+      ripple.style.top = `${e.clientY - rect.top}px`;
 
       setTimeout(() => ripple.remove(), 600);
     });
   });
-});
 
-// Close modal by clicking outside
-document.getElementById('modal').addEventListener('click', e => {
-  if (e.target.id === 'modal') closeModal();
+  // Observe fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 });
-
-function scrollToWorks() {
-  document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
-}
