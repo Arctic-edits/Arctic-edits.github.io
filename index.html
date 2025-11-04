@@ -17,6 +17,9 @@
           <p>GFX Designer</p>
         </div>
       </div>
+      <nav>
+        <button class="btn primary" id="contactBtn">Contact Me</button>
+      </nav>
     </header>
 
     <main>
@@ -62,12 +65,6 @@
           </div>
         </div>
       </section>
-
-      <!-- Contact -->
-      <section class="section fade-in" id="contactSection">
-        <h3>Contact Me</h3>
-        <p>You can reach me on Discord at <strong>@arcticedits</strong> or via email at <strong>arcticeditsyt@gmail.com</strong>.</p>
-      </section>
     </main>
 
     <footer>
@@ -75,8 +72,8 @@
     </footer>
   </div>
 
-  <!-- Modal for Works -->
-  <div class="modal" id="modal" role="dialog" aria-modal="true">
+  <!-- Work Modal -->
+  <div class="modal" id="modal">
     <div class="modal-card">
       <button class="close-btn" onclick="closeModal()">✕</button>
       <div id="modalImages"></div>
@@ -84,6 +81,20 @@
         <div id="modalTitle">Title</div>
         <div>Arctic Edits</div>
       </div>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+  <div class="contact-modal" id="contactModal">
+    <div class="contact-card">
+      <button class="close-btn" id="closeContact">✕</button>
+      <h3>Contact & About Me</h3>
+      <p>Hey, I go by Arctic. I’m based in the USA 🇺🇸<br>
+      Current Skills: GFX Design, Video Editing, Game Development, and more.<br>
+      Currently Learning: Animation and Cybersecurity.<br>
+      Career Goal: Cryptologic Technician – Networks (CTN) in the U.S. Navy.<br>
+      I’m always open to tips, feedback, and recommendations!<br><br>
+      You can reach me on Discord at <strong>@arcticedits</strong> or via email at <strong>arcticeditsyt@gmail.com</strong>.</p>
     </div>
   </div>
 
