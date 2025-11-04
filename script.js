@@ -15,11 +15,6 @@ const works = [
     'https://i.ibb.co/VcHmLMbV/TCI-00000.jpg']}
 ];
 
-const otherProjects = [
-  {title:'Zone:14 Game Dev', tag:'W.I.P'},
-  {title:'TikTok Edits', tag:'W.I.P'}
-];
-
 function renderWorks(){
   const grid = document.getElementById('grid');
   works.forEach((w,i)=>{
@@ -37,17 +32,6 @@ function renderWorks(){
         </div>
       </div>`;
     grid.appendChild(el);
-  });
-
-  const otherGrid = document.getElementById('otherGrid');
-  otherProjects.forEach(p=>{
-    const el = document.createElement('div');
-    el.className='work';
-    el.innerHTML = `
-      <div class="thumb" style="background:#1f2937;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#94a3b8">
-        ${p.title} • ${p.tag}
-      </div>`;
-    otherGrid.appendChild(el);
   });
 }
 
@@ -68,54 +52,26 @@ document.getElementById('modal').addEventListener('click', e=>{
   if(e.target.id==='modal') closeModal();
 });
 
-document.addEventListener('DOMContentLoaded', ()=>{
-  renderWorks();
+function scrollToWorks(){ 
+  document.getElementById('works').scrollIntoView({behavior:'smooth'}); 
+}
 
-  // Fade-in on scroll
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, {threshold:0.1});
-  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+// Contact modal
+document.addEventListener('DOMContentLoaded', () => {
+  const contactBtn = document.getElementById('contactBtn');
+  const contactModal = document.getElementById('contactModal');
+  const closeContact = document.getElementById('closeContact');
 
-  // Button click animation
-  document.querySelectorAll('.btn').forEach(btn=>{
-    btn.addEventListener('click', e=>{
-      const ripple = document.createElement('span');
-      ripple.className='ripple';
-      btn.appendChild(ripple);
-      const rect = btn.getBoundingClientRect();
-      ripple.style.left = (e.clientX - rect.left) + 'px';
-      ripple.style.top = (e.clientY - rect.top) + 'px';
-      setTimeout(()=>ripple.remove(),600);
-    });
+  contactBtn.addEventListener('click', () => contactModal.classList.add('show'));
+  closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
+
+  // Featured image fullscreen
+  const featuredImg = document.getElementById('featuredImage');
+  featuredImg.addEventListener("click", () => {
+    if (featuredImg.requestFullscreen) featuredImg.requestFullscreen();
+    else if (featuredImg.webkitRequestFullscreen) featuredImg.webkitRequestFullscreen();
+    else if (featuredImg.msRequestFullscreen) featuredImg.msRequestFullscreen();
   });
 
-  // Featured fullscreen
-  const featuredImg = document.querySelector(".featured-img");
-  if(featuredImg){
-    featuredImg.addEventListener("click", ()=>{
-      const overlay = document.createElement("div");
-      overlay.style.position="fixed";
-      overlay.style.inset="0";
-      overlay.style.background="rgba(0,0,0,0.9)";
-      overlay.style.display="flex";
-      overlay.style.alignItems="center";
-      overlay.style.justifyContent="center";
-      overlay.style.zIndex="100";
-      overlay.style.cursor="zoom-out";
-
-      const img = document.createElement("img");
-      img.src=featuredImg.src;
-      img.style.maxWidth="90%";
-      img.style.maxHeight="90%";
-      img.style.borderRadius="10px";
-      img.style.boxShadow="0 0 30px rgba(0,0,0,0.6)";
-
-      overlay.appendChild(img);
-      document.body.appendChild(overlay);
-      overlay.addEventListener("click", ()=>overlay.remove());
-    });
-  }
+  renderWorks();
 });
