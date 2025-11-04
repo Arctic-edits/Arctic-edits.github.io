@@ -33,7 +33,17 @@ nav{display:flex;gap:12px}
 .modal.show{display:flex}
 .modal-card{max-width:900px;width:100%;background:#071025;border-radius:12px;padding:20px;margin-top:40px;position:relative}
 .modal-card img{width:100%;height:auto;border-radius:8px;margin-bottom:12px}
-.closeModal{float:right;background:none;border:none;color:var(--muted);font-weight:700;margin-top:-6px;cursor:pointer}
+.closeModal {
+  float: right;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-weight: 700;
+  margin-top: -6px;
+  cursor: pointer;
+  font-size: 20px; /* bigger close button */
+  line-height: 1;
+}
 .contact-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:1100;}
 .contact-card{background:#071025;padding:20px;border-radius:12px;max-width:400px;width:100%;}
 footer{margin-top:24px;color:var(--muted);text-align:center}
