@@ -79,3 +79,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderWorks();
 });
+document.addEventListener("DOMContentLoaded", () => {
+  // Fade in animation on load
+  document.querySelectorAll("section, .header").forEach((el, i) => {
+    setTimeout(() => el.classList.add("fade-in"), i * 200);
+  });
+
+  // Featured image fullscreen
+  const featuredImg = document.querySelector(".featured-img");
+  if (featuredImg) {
+    featuredImg.addEventListener("click", () => {
+      const overlay = document.createElement("div");
+      overlay.style.position = "fixed";
+      overlay.style.inset = "0";
+      overlay.style.background = "rgba(0,0,0,0.9)";
+      overlay.style.display = "flex";
+      overlay.style.alignItems = "center";
+      overlay.style.justifyContent = "center";
+      overlay.style.zIndex = "100";
+      overlay.style.cursor = "zoom-out";
+
+      const img = document.createElement("img");
+      img.src = featuredImg.src;
+      img.style.maxWidth = "90%";
+      img.style.maxHeight = "90%";
+      img.style.borderRadius = "10px";
+      img.style.boxShadow = "0 0 30px rgba(0,0,0,0.6)";
+
+      overlay.appendChild(img);
+      document.body.appendChild(overlay);
+
+      overlay.addEventListener("click", () => overlay.remove());
+    });
+  }
+
+  // Smooth button click feedback
+  document.querySelectorAll(".btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.classList.add("clicked");
+      setTimeout(() => btn.classList.remove("clicked"), 200);
+    });
+  });
+});
+
