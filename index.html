@@ -1,103 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arctic Edits — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arctic Edits — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">AE</div>
-        <div>
-          <h1>Arctic Edits</h1>
-          <p>GFX Designer</p>
-        </div>
-      </div>
-      <nav>
-        <button class="btn primary" id="contactBtn">Contact Me</button>
-      </nav>
-    </header>
+<div class="wrap">
+<header>
+<div class="brand">
+<div class="logo">AE</div>
+<div>
+<h1>Arctic Edits</h1>
+<p>GFX Designer</p>
+</div>
+</div>
+<nav>
+<button class="btn primary" onclick="window.location.href='contact.html'">Contact Me</button>
+</nav>
+</header>
 
-    <main>
-      <!-- Hero / Intro -->
-      <section class="hero fade-in">
-        <div class="intro">
-          <h2>Hi, I'm Arctic.</h2>
-          <p>Hey, I go by Arctic. I’m based in the USA 🇺🇸<br>
-          Current Skills: GFX Design, Video Editing, Game Development, and more.<br>
-          Currently Learning: Animation and Cybersecurity.<br>
-          Career Goal: Cryptologic Technician – Networks (CTN) in the U.S. Navy.<br>
-          I’m always open to tips, feedback, and recommendations!</p>
-        </div>
-        <aside>
-          <div class="preview">
-            <div class="featured-title">
-              <div>Featured</div>
-              <div>2025 • Banner</div>
-            </div>
-            <div id="featuredImage" class="mock" style="background-image:url('https://i.ibb.co/KxSq5tXq/GOC-00000.png')"></div>
-            <div class="featured-caption">Global Occult Coalition Banner</div>
-          </div>
-        </aside>
-      </section>
 
-      <!-- Selected Works -->
-      <section class="section fade-in" id="works">
-        <h3>Selected Works</h3>
-        <div class="grid" id="grid"></div>
-      </section>
+<main>
+<section class="section fade-in">
+<h3>Selected Works</h3>
+<div class="grid" id="grid"></div>
+</section>
 
-      <!-- Other Projects -->
-      <section class="section fade-in" id="otherProjects">
-        <h3>Other Projects</h3>
-        <div class="grid">
-          <div class="work">
-            <div class="thumb" style="background-image:url('https://i.ibb.co/kg026g97/610-00000.png')"></div>
-            <div class="meta"><strong>W.I.P</strong><div class="tag">Zone:14 Game Dev</div></div>
-          </div>
-          <div class="work">
-            <div class="thumb" style="background-image:url('https://i.ibb.co/MkXQZSSG/dsada-00000.jpg')"></div>
-            <div class="meta"><strong>W.I.P</strong><div class="tag">TikTok Edits</div></div>
-          </div>
-        </div>
-      </section>
-    </main>
 
-    <footer>
-      <div>© Arctic Edits — GFX Design</div>
-    </footer>
-  </div>
+<section class="section fade-in">
+<h3>Other Projects</h3>
+<div class="grid" id="otherGrid">
+<div class="work"><strong>W.I.P</strong></div>
+<div class="work"><strong>W.I.P</strong></div>
+<div class="work"><strong>W.I.P</strong></div>
+</div>
+</section>
+</main>
 
-  <!-- Work Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-card">
-      <button class="close-btn" onclick="closeModal()">✕</button>
-      <div id="modalImages"></div>
-      <div class="modal-meta">
-        <div id="modalTitle">Title</div>
-        <div>Arctic Edits</div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Contact Modal -->
-  <div class="contact-modal" id="contactModal">
-    <div class="contact-card">
-      <button class="close-btn" id="closeContact">✕</button>
-      <h3>Contact & About Me</h3>
-      <p>Hey, I go by Arctic. I’m based in the USA 🇺🇸<br>
-      Current Skills: GFX Design, Video Editing, Game Development, and more.<br>
-      Currently Learning: Animation and Cybersecurity.<br>
-      Career Goal: Cryptologic Technician – Networks (CTN) in the U.S. Navy.<br>
-      I’m always open to tips, feedback, and recommendations!<br><br>
-      You can reach me on Discord at <strong>@arcticedits</strong> or via email at <strong>arcticeditsyt@gmail.com</strong>.</p>
-    </div>
-  </div>
+<footer>
+<div>© Arctic Edits — GFX Design</div>
+</footer>
+</div>
 
-  <script src="script.js"></script>
+
+<!-- Modal for full images -->
+<div class="modal" id="modal">
+<div class="modal-card" id="modalCard">
+<button class="close-btn" onclick="closeModal()">✕</button>
+<div id="modalImages"></div>
+<div id="modalTitle"></div>
+</div>
+</div>
+
+
+<script src="script.js"></script>
 </body>
 </html>
