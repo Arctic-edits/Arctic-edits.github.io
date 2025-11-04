@@ -1,146 +1,54 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact & About — Arctic Edits</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Page-specific styles */
-    body {
-      background: linear-gradient(180deg, #0b1020 0%, #061021 100%);
-      color: #e6eef6;
-    }
-
-    main {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-
-    .section {
-      background: rgba(15, 23, 36, 0.8);
-      padding: 28px;
-      border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(6px);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .section:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
-    }
-
-    h2 {
-      font-size: 28px;
-      margin-bottom: 12px;
-      border-bottom: 2px solid #7be0ff;
-      display: inline-block;
-      padding-bottom: 4px;
-    }
-
-    p, li {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #cbd5e1;
-    }
-
-    ul {
-      padding-left: 20px;
-      margin-top: 8px;
-      margin-bottom: 16px;
-    }
-
-    .btn.primary {
-      background: linear-gradient(90deg, #7be0ff, #6f9bff);
-      color: #042233;
-      border: none;
-      padding: 10px 20px;
-      font-weight: 600;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn.primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #94a3b8;
-      font-size: 14px;
-    }
-
-    /* Fade-in animation */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact & About — Arctic Edits</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">AE</div>
-        <div>
-          <h1>Arctic Edits</h1>
-          <p>GFX Designer</p>
-        </div>
-      </div>
-      <nav>
-        <button class="btn primary" onclick="window.location.href='index.html'">Back to Portfolio</button>
-      </nav>
-    </header>
+<div class="wrap">
+<header>
+<div class="brand">
+<div class="logo">AE</div>
+<div>
+<h1>Arctic Edits</h1>
+<p>GFX Designer</p>
+</div>
+</div>
+<nav>
+<button class="btn primary" onclick="window.location.href='index.html'">Back to Portfolio</button>
+</nav>
+</header>
 
-    <main>
-      <section class="section fade-in">
-        <h2>About Me</h2>
-        <p>Hey, I go by <strong>Arctic</strong>.<br>
-        I’m based in the <strong>USA 🇺🇸</strong></p>
-        <p><strong>Current Skills:</strong> GFX Design, Video Editing, Game Development, and more.</p>
-        <p><strong>Currently Learning:</strong> Animation and Cybersecurity.</p>
-        <p><strong>Career Goal:</strong> Cryptologic Technician – Networks (CTN) in the U.S. Navy.</p>
-        <p>I’m always open to tips, feedback, and recommendations!</p>
-      </section>
 
-      <section class="section fade-in">
-        <h2>Contact Me</h2>
-        <p>You can reach me via:</p>
-        <ul>
-          <li>Discord: <strong>@arcticedits</strong></li>
-          <li>Email: <strong>arcticeditsyt@gmail.com</strong></li>
-        </ul>
-        <p>Feel free to reach out for commissions, collaborations, or just to chat!</p>
-      </section>
-    </main>
+<main>
+<section class="section fade-in">
+<h2>About Me</h2>
+<p>Hey, I go by <strong>Arctic</strong>.<br>I’m based in the <strong>USA 🇺🇸</strong></p>
+<p><strong>Current Skills:</strong> GFX Design, Video Editing, Game Development, and more.</p>
+<p><strong>Currently Learning:</strong> Animation and Cybersecurity.</p>
+<p><strong>Career Goal:</strong> Cryptologic Technician – Networks (CTN) in the U.S. Navy.</p>
+<p>I’m always open to tips, feedback, and recommendations!</p>
+</section>
 
-    <footer>
-      <div>© Arctic Edits — GFX Design</div>
-    </footer>
-  </div>
 
-  <script>
-    // Fade-in animation on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
+<section class="section fade-in">
+<h2>Contact Me</h2>
+<ul>
+<li>Discord: <strong>@arcticedits</strong></li>
+<li>Email: <strong>arcticeditsyt@gmail.com</strong></li>
+</ul>
+<p>Feel free to reach out for commissions or collaborations!</p>
+</section>
+</main>
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+
+<footer>
+<div>© Arctic Edits — GFX Design</div>
+</footer>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
