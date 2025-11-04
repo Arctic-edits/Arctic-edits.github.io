@@ -23,13 +23,9 @@ function renderWorks(){
     el.innerHTML = `
       <div class="thumb" style="background-image:url('${w.src[0]}')"></div>
       <div class="meta">
-        <div>
-          <strong>${w.title}</strong>
-          <div class="tag">${w.tag}</div>
-        </div>
-        <div>
-          <button class='btn' onclick='openModal(${i})'>Open</button>
-        </div>
+        <strong>${w.title}</strong>
+        <div class="tag">${w.tag}</div>
+        <button class='btn' onclick='openModal(${i})'>Open</button>
       </div>`;
     grid.appendChild(el);
   });
@@ -48,70 +44,40 @@ function closeModal(){
   document.getElementById('modal').classList.remove('show'); 
 }
 
-document.getElementById('modal').addEventListener('click', e=>{
-  if(e.target.id==='modal') closeModal();
-});
-
-function scrollToWorks(){ 
-  document.getElementById('works').scrollIntoView({behavior:'smooth'}); 
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   renderWorks();
 
+  // Fade-in animations
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, {threshold:0.1});
+  fadeEls.forEach(el=>observer.observe(el));
+
   // Featured image fullscreen
-  const featuredImg = document.getElementById('featuredImage');
-  if (featuredImg) {
-    featuredImg.addEventListener('click', () => {
-      const overlay = document.createElement("div");
-      overlay.style.position = "fixed";
-      overlay.style.inset = "0";
-      overlay.style.background = "rgba(0,0,0,0.9)";
-      overlay.style.display = "flex";
-      overlay.style.alignItems = "center";
-      overlay.style.justifyContent = "center";
-      overlay.style.zIndex = "100";
-      overlay.style.cursor = "zoom-out";
+  const featuredImage = document.getElementById('featuredImage');
+  featuredImage.addEventListener('click', () => {
+    const overlay = document.createElement("div");
+    overlay.style.position="fixed";
+    overlay.style.inset="0";
+    overlay.style.background="rgba(0,0,0,0.9)";
+    overlay.style.display="flex";
+    overlay.style.alignItems="center";
+    overlay.style.justifyContent="center";
+    overlay.style.zIndex="100";
+    overlay.style.cursor="zoom-out";
 
-      const img = document.createElement("img");
-      img.src = featuredImg.style.backgroundImage.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
-      img.style.maxWidth = "90%";
-      img.style.maxHeight = "90%";
-      img.style.borderRadius = "10px";
-      img.style.boxShadow = "0 0 30px rgba(0,0,0,0.6)";
+    const img = document.createElement("img");
+    img.src = featuredImage.style.backgroundImage.slice(5,-2);
+    img.style.maxWidth="90%";
+    img.style.maxHeight="90%";
+    img.style.borderRadius="10px";
+    img.style.boxShadow="0 0 30px rgba(0,0,0,0.6)";
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
 
-      overlay.appendChild(img);
-      document.body.appendChild(overlay);
-
-      overlay.addEventListener("click", () => overlay.remove());
-    });
-  }
-
-  // Fade in animation
-  document.querySelectorAll(".fade-in").forEach((el, i) => {
-    setTimeout(() => el.classList.add("visible"), i * 200);
+    overlay.addEventListener("click", ()=>overlay.remove());
   });
-
-  // Button ripple effect
-  document.querySelectorAll(".btn").forEach(btn => {
-    btn.addEventListener("click", function(e) {
-      const ripple = document.createElement("span");
-      ripple.classList.add("ripple");
-      this.appendChild(ripple);
-
-      const rect = this.getBoundingClientRect();
-      ripple.style.left = `${e.clientX - rect.left}px`;
-      ripple.style.top = `${e.clientY - rect.top}px`;
-
-      setTimeout(() => ripple.remove(), 600);
-    });
-  });
-
-  // Observe fade-in on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 });
