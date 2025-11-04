@@ -153,18 +153,55 @@ nav {
 }
 
 /* === TAGS === */
-.tags {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
-}
-
 .tag {
   font-size: 12px;
-  color: #a0b3c7;
-  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted); /* same muted color as text */
+  background: var(--card); /* same as card background to blend in */
   padding: 4px 8px;
   border-radius: 8px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* optional hover effect for tags */
+.tag:hover {
+  background: rgba(123, 224, 255, 0.1);
+  color: var(--accent);
+}
+
+/* === PAGE ANIMATIONS === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered animations for grid items */
+.grid .work {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.grid .work:nth-child(1) { animation-delay: 0.1s; }
+.grid .work:nth-child(2) { animation-delay: 0.2s; }
+.grid .work:nth-child(3) { animation-delay: 0.3s; }
+.grid .work:nth-child(4) { animation-delay: 0.4s; }
+.grid .work:nth-child(5) { animation-delay: 0.5s; }
+/* add more if you have more items */
+
+/* Smooth page transition for contact page */
+.contact-page,
+.contact-card {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s ease forwards;
 }
 
 /* === GRID / WORK SECTIONS === */
