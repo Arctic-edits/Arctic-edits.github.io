@@ -1,24 +1,44 @@
-:root{
---bg:#0b1020; --card:#0f1724; --muted:#94a3b8; --accent:#7be0ff; --glass: rgba(255,255,255,0.04);
---radius:14px; --maxw:1200px;
+const works = [
+{title:'METROPOLITAN PD (ER:LC) Commission', tag:'Commission', src:['https://i.ibb.co/d0YZnR5f/room-00000.jpg']},
+{title:'Global Occult Coalition — Commission Set', tag:'Commission Series', src:[
+'https://i.ibb.co/KxSq5tXq/GOC-00000.png',
+'https://i.ibb.co/MkXQZSSG/dsada-00000.jpg',
+'https://i.ibb.co/przwPLYG/snow-00000.jpg',
+'https://i.ibb.co/h5MF8Kv/PTOLEMY-00000.jpg',
+'https://i.ibb.co/x8Hy4nZJ/bhgear-00000.jpg']},
+{title:'Zone: 14 Occult Conflict', tag:'Commission', src:['https://i.ibb.co/kg026g97/610-00000.png']},
+{title:'Chaos Insurgency — Commission Series', tag:'Commission Series', src:[
+'https://i.ibb.co/mrp0Z2rN/TCImr-00000.jpg',
+'https://i.ibb.co/zTBBgHnM/TCIHR-00000.jpg',
+'https://i.ibb.co/8nbGTHj7/TC3-I-00000.jpg',
+'https://i.ibb.co/SXBy3YzV/T2-CI-00000.jpg',
+'https://i.ibb.co/VcHmLMbV/TCI-00000.jpg']}
+];
+
+
+function renderWorks(){
+const grid = document.getElementById('grid');
+works.forEach((w,i)=>{
+const el = document.createElement('div'); el.className='work';
+el.innerHTML=`<div><strong>${w.title}</strong><br><span>${w.tag}</span></div>
+<button class='btn' onclick='openModal(${i})'>Open</button>`;
+grid.appendChild(el);
+});
 }
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,var(--bg) 0%,#061021 100%);color:#e6eef6;}
-.wrap{max-width:var(--maxw);margin:40px auto;padding:28px}
-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
-.brand{display:flex;align-items:center;gap:12px}.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#6f9bff);display:flex;align-items:center;justify-content:center;font-weight:800;color:#042233}
-.brand h1{margin:0;font-size:18px} .brand p{margin:0;font-size:13px;color:var(--muted)}
-nav{display:flex;gap:12px}
-.btn{padding:8px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#6f9bff);border:none;color:#042233;font-weight:600;cursor:pointer;position:relative;overflow:hidden}
-.btn.clicked{opacity:0.7;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:12px}
-.work{background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:12px;display:flex;align-items:center;justify-content:center;height:120px}
-.section{margin-top:28px}
-footer{margin-top:24px;color:var(--muted);text-align:center}
-.modal{position:fixed;inset:0;background:rgba(2,6,23,0.8);display:none;align-items:flex-start;justify-content:center;padding:28px;overflow-y:auto;scroll-behavior:smooth}
-.modal.show{display:flex}
-.modal-card{max-width:900px;width:100%;background:#071025;border-radius:12px;padding:20px;margin-top:40px}
-.modal-card img{width:100%;height:auto;border-radius:8px;margin-bottom:12px}
-.close-btn{float:right;background:none;border:none;color:var(--muted);font-weight:700;margin-top:-6px;cursor:pointer}
-.fade-in{opacity:0;transform:translateY(20px);transition:all 0.6s ease}
-.visible{opacity:1;transform:translateY(0)}
+
+
+function openModal(i){
+const modal=document.getElementById('modal');
+const modalImages=document.getElementById('modalImages');
+modalImages.innerHTML=works[i].src.map(s=>`<img src='${s}' alt='${works[i].title}'>`).join('');
+document.getElementById('modalTitle').textContent=works[i].title+' • '+works[i].tag;
+modal.scrollTop=0;
+modal.classList.add('show');
+}
+
+
+function closeModal(){ document.getElementById('modal').classList.remove('show'); }
+document.getElementById('modal').addEventListener('click',e=>{ if(e.target.id==='modal') closeModal(); });
+
+
+document.addEventListener('DOMContentLoaded',()=>{ renderWorks(); });
