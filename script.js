@@ -16,8 +16,8 @@ const works = [
 ];
 
 const otherProjects = [
-  {title:'WIP', tag:'W.I.P'},
-  {title:'WIP', tag:'W.I.P'}
+  {title:'Zone:14 Game Dev', tag:'W.I.P'},
+  {title:'TikTok Edits', tag:'W.I.P'}
 ];
 
 function renderWorks(){
@@ -77,4 +77,45 @@ document.addEventListener('DOMContentLoaded', ()=>{
       if(entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, {threshold:0.1});
-  document.querySelectorAll('.fade
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+  // Button click animation
+  document.querySelectorAll('.btn').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      const ripple = document.createElement('span');
+      ripple.className='ripple';
+      btn.appendChild(ripple);
+      const rect = btn.getBoundingClientRect();
+      ripple.style.left = (e.clientX - rect.left) + 'px';
+      ripple.style.top = (e.clientY - rect.top) + 'px';
+      setTimeout(()=>ripple.remove(),600);
+    });
+  });
+
+  // Featured fullscreen
+  const featuredImg = document.querySelector(".featured-img");
+  if(featuredImg){
+    featuredImg.addEventListener("click", ()=>{
+      const overlay = document.createElement("div");
+      overlay.style.position="fixed";
+      overlay.style.inset="0";
+      overlay.style.background="rgba(0,0,0,0.9)";
+      overlay.style.display="flex";
+      overlay.style.alignItems="center";
+      overlay.style.justifyContent="center";
+      overlay.style.zIndex="100";
+      overlay.style.cursor="zoom-out";
+
+      const img = document.createElement("img");
+      img.src=featuredImg.src;
+      img.style.maxWidth="90%";
+      img.style.maxHeight="90%";
+      img.style.borderRadius="10px";
+      img.style.boxShadow="0 0 30px rgba(0,0,0,0.6)";
+
+      overlay.appendChild(img);
+      document.body.appendChild(overlay);
+      overlay.addEventListener("click", ()=>overlay.remove());
+    });
+  }
+});
