@@ -1,10 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Arctic Edits — GFX Designer</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arctic Edits — Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -18,64 +17,57 @@
           <p>GFX Designer</p>
         </div>
       </div>
-      <nav>
-        <button class="btn primary" onclick="window.location.href='contact.html'">Contact Me</button>
-      </nav>
     </header>
 
     <main>
+      <!-- Hero / Intro -->
       <section class="hero fade-in">
         <div class="intro">
-          <h2>Clean visuals. Bold statements.</h2>
-          <p>Hi, I'm Arctic Edits. I design GFX, banners, designs, and more.</p>
-          <div class="cta">
-            <button class="btn primary" onclick="scrollToWorks()">View my work</button>
-          </div>
-
-          <div class="tools">
-            <span class="tag">Photoshop</span>
-            <span class="tag">After Effects</span>
-            <span class="tag">Blender</span>
-          </div>
+          <h2>Hi, I'm Arctic.</h2>
+          <p>Hey, I go by Arctic. I’m based in the USA 🇺🇸<br>
+          Current Skills: GFX Design, Video Editing, Game Development, and more.<br>
+          Currently Learning: Animation and Cybersecurity.<br>
+          Career Goal: Cryptologic Technician – Networks (CTN) in the U.S. Navy.<br>
+          I’m always open to tips, feedback, and recommendations!</p>
         </div>
-
         <aside>
           <div class="preview">
             <div class="featured-title">
               <div>Featured</div>
               <div>2025 • Banner</div>
             </div>
-            <div class="mock featured-img" id="featuredImage" style="background-image:url('https://i.ibb.co/KxSq5tXq/GOC-00000.png')"></div>
-            <div class="featured-caption">
-              Global Occult Coalition Banner
-            </div>
+            <div id="featuredImage" class="mock" style="background-image:url('https://i.ibb.co/KxSq5tXq/GOC-00000.png')"></div>
+            <div class="featured-caption">Global Occult Coalition Banner</div>
           </div>
         </aside>
       </section>
 
-      <section class="section" id="works">
+      <!-- Selected Works -->
+      <section class="section fade-in" id="works">
         <h3>Selected Works</h3>
         <div class="grid" id="grid"></div>
       </section>
 
-      <section class="section" id="otherWorks">
-        <h3>Other Works (W.I.P)</h3>
-        <div class="grid" id="otherGrid">
-          <div class="work fade-in">
+      <!-- Other Projects -->
+      <section class="section fade-in" id="otherProjects">
+        <h3>Other Projects</h3>
+        <div class="grid">
+          <div class="work">
             <div class="thumb" style="background-image:url('https://i.ibb.co/kg026g97/610-00000.png')"></div>
-            <div class="meta">
-              <strong>(W.I.P)</strong>
-            </div>
+            <div class="meta"><strong>W.I.P</strong><div class="tag">Zone:14 Game Dev</div></div>
           </div>
-          <div class="work fade-in">
+          <div class="work">
             <div class="thumb" style="background-image:url('https://i.ibb.co/MkXQZSSG/dsada-00000.jpg')"></div>
-            <div class="meta">
-              <strong>(W.I.P)</strong>
-            </div>
+            <div class="meta"><strong>W.I.P</strong><div class="tag">TikTok Edits</div></div>
           </div>
         </div>
       </section>
 
+      <!-- Contact -->
+      <section class="section fade-in" id="contactSection">
+        <h3>Contact Me</h3>
+        <p>You can reach me on Discord at <strong>@arcticedits</strong> or via email at <strong>arcticeditsyt@gmail.com</strong>.</p>
+      </section>
     </main>
 
     <footer>
@@ -83,9 +75,9 @@
     </footer>
   </div>
 
-  <!-- Project Modal -->
+  <!-- Modal for Works -->
   <div class="modal" id="modal" role="dialog" aria-modal="true">
-    <div class="modal-card" id="modalCard">
+    <div class="modal-card">
       <button class="close-btn" onclick="closeModal()">✕</button>
       <div id="modalImages"></div>
       <div class="modal-meta">
