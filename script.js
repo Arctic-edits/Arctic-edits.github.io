@@ -23,9 +23,13 @@ function renderWorks(){
     el.innerHTML = `
       <div class="thumb" style="background-image:url('${w.src[0]}')"></div>
       <div class="meta">
-        <strong>${w.title}</strong>
-        <div class="tag">${w.tag}</div>
-        <button class='btn' onclick='openModal(${i})'>Open</button>
+        <div>
+          <strong>${w.title}</strong>
+          <div class="tag">${w.tag}</div>
+        </div>
+        <div>
+          <button class='btn open-btn' onclick='openModal(${i})'>Open</button>
+        </div>
       </div>`;
     grid.appendChild(el);
   });
@@ -44,19 +48,14 @@ function closeModal(){
   document.getElementById('modal').classList.remove('show'); 
 }
 
+document.getElementById('modal').addEventListener('click', e=>{
+  if(e.target.id==='modal') closeModal();
+});
+
+// Featured image fullscreen
 document.addEventListener('DOMContentLoaded', () => {
   renderWorks();
 
-  // Fade-in animations
-  const fadeEls = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, {threshold:0.1});
-  fadeEls.forEach(el=>observer.observe(el));
-
-  // Featured image fullscreen
   const featuredImage = document.getElementById('featuredImage');
   featuredImage.addEventListener('click', () => {
     const overlay = document.createElement("div");
@@ -79,5 +78,30 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(overlay);
 
     overlay.addEventListener("click", ()=>overlay.remove());
+  });
+
+  // Contact Me modal
+  const contactBtn = document.getElementById('contactBtn');
+  const contactModal = document.getElementById('contactModal');
+  const closeContact = document.getElementById('closeContact');
+
+  contactBtn.addEventListener('click', () => contactModal.classList.add('show'));
+  closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
+
+  // Fade-in animation on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, {threshold:0.1});
+  fadeEls.forEach(el=>observer.observe(el));
+
+  // Smooth button click animation
+  document.querySelectorAll(".btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      btn.classList.add("clicked");
+      setTimeout(()=>btn.classList.remove("clicked"), 200);
+    });
   });
 });
