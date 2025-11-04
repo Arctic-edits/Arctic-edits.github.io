@@ -1,34 +1,24 @@
 const works = [
-  {title:'METROPOLITAN PD (ER:LC) Commission', tag:'Commission', src:['https://i.ibb.co/d0YZnR5f/room-00000.jpg']},
-  {title:'Global Occult Coalition — Commission Set', tag:'Commission Series', src:[
-    'https://i.ibb.co/KxSq5tXq/GOC-00000.png',
-    'https://i.ibb.co/MkXQZSSG/dsada-00000.jpg',
-    'https://i.ibb.co/przwPLYG/snow-00000.jpg',
-    'https://i.ibb.co/h5MF8Kv/PTOLEMY-00000.jpg',
-    'https://i.ibb.co/x8Hy4nZJ/bhgear-00000.jpg']},
-  {title:'Zone: 14 Occult Conflict', tag:'Commission', src:['https://i.ibb.co/kg026g97/610-00000.png']},
-  {title:'Chaos Insurgency — Commission Series', tag:'Commission Series', src:[
-    'https://i.ibb.co/mrp0Z2rN/TCImr-00000.jpg',
-    'https://i.ibb.co/zTBBgHnM/TCIHR-00000.jpg',
-    'https://i.ibb.co/8nbGTHj7/TC3-I-00000.jpg',
-    'https://i.ibb.co/SXBy3YzV/T2-CI-00000.jpg',
-    'https://i.ibb.co/VcHmLMbV/TCI-00000.jpg']}
+  {title:'W.I.P', tag:'Project', src:[]},
+  {title:'W.I.P', tag:'Project', src:[]},
+  {title:'W.I.P', tag:'Project', src:[]}
 ];
 
 function renderWorks(){
   const grid = document.getElementById('grid');
+  grid.innerHTML = '';
   works.forEach((w,i)=>{
     const el = document.createElement('div'); 
     el.className='work';
     el.innerHTML = `
-      <div class="thumb" style="background-image:url('${w.src[0]}')"></div>
+      <div class="thumb"></div>
       <div class="meta">
         <div>
           <strong>${w.title}</strong>
           <div class="tag">${w.tag}</div>
         </div>
         <div>
-          <button class='btn open-btn' onclick='openModal(${i})'>Open</button>
+          <button class='btn' onclick='openModal(${i})'>Open</button>
         </div>
       </div>`;
     grid.appendChild(el);
@@ -38,7 +28,11 @@ function renderWorks(){
 function openModal(i){
   const modal = document.getElementById('modal');
   const modalImages = document.getElementById('modalImages');
-  modalImages.innerHTML = works[i].src.map(s=>`<img src='${s}' alt='${works[i].title}'>`).join('');
+  if(works[i].src.length === 0){
+    modalImages.innerHTML = "<p style='color:var(--muted)'>No images yet. W.I.P</p>";
+  } else {
+    modalImages.innerHTML = works[i].src.map(s=>`<img src='${s}' alt='${works[i].title}'>`).join('');
+  }
   document.getElementById('modalTitle').textContent = works[i].title + ' • ' + works[i].tag;
   modal.scrollTop = 0;
   modal.classList.add('show');
@@ -48,15 +42,12 @@ function closeModal(){
   document.getElementById('modal').classList.remove('show'); 
 }
 
-document.getElementById('modal').addEventListener('click', e=>{
-  if(e.target.id==='modal') closeModal();
-});
-
+// Smooth scroll to works
 function scrollToWorks(){ 
   document.getElementById('works').scrollIntoView({behavior:'smooth'}); 
 }
 
-// Contact modal
+// Contact modal logic
 document.addEventListener('DOMContentLoaded', () => {
   const contactBtn = document.getElementById('contactBtn');
   const contactModal = document.getElementById('contactModal');
@@ -67,27 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Featured image fullscreen
   const featuredImg = document.getElementById('featuredImage');
-  featuredImg.addEventListener("click", () => {
-    if (featuredImg.requestFullscreen) featuredImg.requestFullscreen();
-    else if (featuredImg.webkitRequestFullscreen) featuredImg.webkitRequestFullscreen();
-    else if (featuredImg.msRequestFullscreen) featuredImg.msRequestFullscreen();
-  });
-document.addEventListener('DOMContentLoaded', () => {
-  const contactBtn = document.getElementById('contactBtn');
-  const contactModal = document.getElementById('contactModal');
-  const closeContact = document.getElementById('closeContact');
-
-  // Open contact modal every time button is clicked
-  contactBtn.onclick = () => contactModal.classList.add('show');
-  closeContact.onclick = () => contactModal.classList.remove('show');
-
-  // Commission modal
-  const featuredImg = document.getElementById('featuredImage');
-  featuredImg.addEventListener("click", () => {
-    if (featuredImg.requestFullscreen) featuredImg.requestFullscreen();
-    else if (featuredImg.webkitRequestFullscreen) featuredImg.webkitRequestFullscreen();
-    else if (featuredImg.msRequestFullscreen) featuredImg.msRequestFullscreen();
-  });
+  if(featuredImg){
+    featuredImg.addEventListener('click', () => {
+      if (featuredImg.requestFullscreen) featuredImg.requestFullscreen();
+      else if (featuredImg.webkitRequestFullscreen) featuredImg.webkitRequestFullscreen();
+      else if (featuredImg.msRequestFullscreen) featuredImg.msRequestFullscreen();
+    });
+  }
 
   renderWorks();
 });
