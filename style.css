@@ -1,13 +1,329 @@
-:root{ --bg:#0b1020; --card:#0f1724; --muted:#94a3b8; --accent:#7be0ff; --glass: rgba(255,255,255,0.04); --radius:14px; --maxw:1200px; } *{box-sizing:border-box} html,body{height:100%} body{ margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial; background:linear-gradient(180deg,var(--bg) 0%, #061021 100%); color:#e6eef6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; } .wrap{max-width:var(--maxw); margin:40px auto; padding:28px} header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px} .brand{display:flex;align-items:center;gap:12px} .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#6f9bff);display:flex;align-items:center;justify-content:center;font-weight:800;color:#042233} .brand h1{margin:0;font-size:18px;letter-spacing:0.6px} .brand p{margin:0;font-size:13px;color:var(--muted)} nav{display:flex;gap:12px} .btn{padding:8px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);cursor:pointer;color:var(--muted);font-weight:600;position:relative;overflow:hidden;transition:0.2s} .btn:hover{opacity:0.8} .btn.primary{background:linear-gradient(90deg,var(--accent),#6f9bff);color:#042233;border:none} .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center} .intro{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:28px;border-radius:var(--radius);backdrop-filter:blur(6px);} .intro h2{margin:0 0 8px 0;font-size:34px} .intro p{margin:0 0 20px;color:var(--muted);line-height:1.45} .cta{display:flex;gap:12px} .preview{background:var(--card);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:12px} .preview img{width:100%;border-radius:var(--radius);cursor:pointer} .tags{display:flex;gap:10px;margin-top:12px} .tag{font-size:12px;color:var(--muted);background:rgba(255,255,255,0.05);padding:4px 8px;border-radius:8px} .section{margin-top:28px} .section h3{margin:0 0 14px 0} .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px} .work{background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:12px;cursor:pointer;overflow:hidden;position:relative} .work .thumb{height:160px;border-radius:8px;background-size:cover;background-position:center;box-shadow:inset 0 -60px 120px rgba(0,0,0,0.45)} .work .meta{padding-top:10px;display:flex;justify-content:space-between;align-items:center} /* === MODALS === */ .modal, .contact-modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.8); z-index:9999; padding:20px; } /* When visible */ .modal.show, .contact-modal.show{display:flex} /* Stop page scroll when modal open */ body.modal-open{ overflow:hidden; } /* Card content inside modal */ .modal-card, .contact-card{ max-width:900px; width:100%; background:#071025; border-radius:12px; padding:20px; position:relative; display:flex; flex-direction:column; max-height:90vh; /* fits screen */ overflow:hidden; } /* Scrollable area inside modal */ .modal-scroll{ overflow-y:auto; flex:1; padding-top:10px; } /* Bigger close button */ .closeModal{ position:absolute; top:12px; right:12px; background:none; border:none; color:#fff; font-weight:800; font-size:32px; /* Bigger for mobile */ cursor:pointer; z-index:10; transition:opacity 0.2s ease; } .closeModal:hover{opacity:0.8} .modal-card img{ width:100%; height:auto; border-radius:8px; margin-bottom:12px; } footer{margin-top:24px;color:var(--muted);text-align:center} /* Ripple effect for buttons */ .btn .ripple{ position:absolute; border-radius:50%; transform: scale(0); animation: ripple 0.6s linear; background: rgba(255,255,255,0.3); } @keyframes ripple{ to { transform: scale(4); opacity:0;} } @media (max-width:980px){ .hero{grid-template-columns:1fr} .grid{grid-template-columns:repeat(2,1fr)} .wrap{padding:16px} } @media (max-width:640px){ .grid{grid-template-columns:1fr} .brand h1{font-size:16px} } /* Blend Commission tag into background */
+:root {
+  --bg: #0b1020;
+  --card: #0f1724;
+  --muted: #94a3b8;
+  --accent: #7be0ff;
+  --glass: rgba(255, 255, 255, 0.04);
+  --radius: 14px;
+  --maxw: 1200px;
+}
+
+/* === GLOBAL RESET === */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+  background: linear-gradient(180deg, var(--bg) 0%, #061021 100%);
+  color: #e6eef6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === WRAPPER & HEADER === */
+.wrap {
+  max-width: var(--maxw);
+  margin: 40px auto;
+  padding: 28px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #6f9bff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #042233;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.6px;
+}
+
+.brand p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+nav {
+  display: flex;
+  gap: 12px;
+}
+
+/* === BUTTONS === */
+.btn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  color: var(--muted);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, var(--accent), #6f9bff);
+  color: #042233;
+  border: none;
+}
+
+/* === HERO SECTION === */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 28px;
+  align-items: center;
+}
+
+.intro {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  padding: 28px;
+  border-radius: var(--radius);
+  backdrop-filter: blur(6px);
+}
+
+.intro h2 {
+  margin: 0 0 8px 0;
+  font-size: 34px;
+}
+
+.intro p {
+  margin: 0 0 20px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.cta {
+  display: flex;
+  gap: 12px;
+}
+
+/* === PREVIEW SECTION === */
+.preview {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.preview img {
+  width: 100%;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+/* === TAGS === */
+.tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
 .tag {
   font-size: 12px;
   color: #a0b3c7;
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
   padding: 4px 8px;
   border-radius: 8px;
 }
 
-/* Contact page layout */
+/* === GRID / WORK SECTIONS === */
+.section {
+  margin-top: 28px;
+}
+
+.section h3 {
+  margin: 0 0 14px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.work {
+  background: var(--glass);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.work .thumb {
+  height: 160px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 -60px 120px rgba(0, 0, 0, 0.45);
+}
+
+.work .meta {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* === MODALS === */
+.modal,
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal.show,
+.contact-modal.show {
+  display: flex;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal-card,
+.contact-card {
+  max-width: 900px;
+  width: 100%;
+  background: #071025;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.modal-scroll {
+  overflow-y: auto;
+  flex: 1;
+  padding-top: 10px;
+}
+
+/* Close Button */
+.closeModal {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 800;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.2s ease;
+}
+
+.closeModal:hover {
+  opacity: 0.8;
+}
+
+.modal-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+/* === FOOTER === */
+footer {
+  margin-top: 24px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* === BUTTON RIPPLE EFFECT === */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 980px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wrap {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand h1 {
+    font-size: 16px;
+  }
+}
+
+/* === CONTACT PAGE === */
 .contact-page {
   display: flex;
   flex-direction: column;
@@ -17,7 +333,7 @@
 
 .contact-card {
   background: var(--glass);
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius);
   padding: 32px;
   max-width: 600px;
@@ -27,6 +343,13 @@
 }
 
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(15px);}
-  to {opacity: 1; transform: translateY(0);}
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
