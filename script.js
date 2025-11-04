@@ -1,7 +1,18 @@
 const works = [
-  {title:'W.I.P', tag:'Project', src:[]},
-  {title:'W.I.P', tag:'Project', src:[]},
-  {title:'W.I.P', tag:'Project', src:[]}
+  {title:'METROPOLITAN PD (ER:LC) Commission', tag:'Commission', src:['https://i.ibb.co/d0YZnR5f/room-00000.jpg']},
+  {title:'Global Occult Coalition — Commission Set', tag:'Commission Series', src:[
+    'https://i.ibb.co/KxSq5tXq/GOC-00000.png',
+    'https://i.ibb.co/MkXQZSSG/dsada-00000.jpg',
+    'https://i.ibb.co/przwPLYG/snow-00000.jpg',
+    'https://i.ibb.co/h5MF8Kv/PTOLEMY-00000.jpg',
+    'https://i.ibb.co/x8Hy4nZJ/bhgear-00000.jpg']},
+  {title:'Zone: 14 Occult Conflict', tag:'Commission', src:['https://i.ibb.co/kg026g97/610-00000.png']},
+  {title:'Chaos Insurgency — Commission Series', tag:'Commission Series', src:[
+    'https://i.ibb.co/mrp0Z2rN/TCImr-00000.jpg',
+    'https://i.ibb.co/zTBBgHnM/TCIHR-00000.jpg',
+    'https://i.ibb.co/8nbGTHj7/TC3-I-00000.jpg',
+    'https://i.ibb.co/SXBy3YzV/T2-CI-00000.jpg',
+    'https://i.ibb.co/VcHmLMbV/TCI-00000.jpg']}
 ];
 
 function renderWorks(){
@@ -11,7 +22,7 @@ function renderWorks(){
     const el = document.createElement('div'); 
     el.className='work';
     el.innerHTML = `
-      <div class="thumb"></div>
+      <div class="thumb" style="background-image:url('${w.src[0]}')"></div>
       <div class="meta">
         <div>
           <strong>${w.title}</strong>
@@ -28,11 +39,7 @@ function renderWorks(){
 function openModal(i){
   const modal = document.getElementById('modal');
   const modalImages = document.getElementById('modalImages');
-  if(works[i].src.length === 0){
-    modalImages.innerHTML = "<p style='color:var(--muted)'>No images yet. W.I.P</p>";
-  } else {
-    modalImages.innerHTML = works[i].src.map(s=>`<img src='${s}' alt='${works[i].title}'>`).join('');
-  }
+  modalImages.innerHTML = works[i].src.map(s=>`<img src='${s}' alt='${works[i].title}'>`).join('');
   document.getElementById('modalTitle').textContent = works[i].title + ' • ' + works[i].tag;
   modal.scrollTop = 0;
   modal.classList.add('show');
@@ -42,18 +49,21 @@ function closeModal(){
   document.getElementById('modal').classList.remove('show'); 
 }
 
-// Smooth scroll to works
+document.getElementById('modal').addEventListener('click', e=>{
+  if(e.target.id==='modal') closeModal();
+});
+
 function scrollToWorks(){ 
   document.getElementById('works').scrollIntoView({behavior:'smooth'}); 
 }
 
-// Contact modal logic
+// Full DOM loaded logic
 document.addEventListener('DOMContentLoaded', () => {
-  const contactBtn = document.getElementById('contactBtn');
+  const hireBtn = document.getElementById('contactBtn');
   const contactModal = document.getElementById('contactModal');
   const closeContact = document.getElementById('closeContact');
 
-  contactBtn.addEventListener('click', () => contactModal.classList.add('show'));
+  hireBtn.addEventListener('click', () => contactModal.classList.add('show'));
   closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
 
   // Featured image fullscreen
@@ -65,6 +75,20 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (featuredImg.msRequestFullscreen) featuredImg.msRequestFullscreen();
     });
   }
+
+  // Button ripple effect
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      this.appendChild(ripple);
+      const x = e.clientX - e.target.offsetLeft;
+      const y = e.clientY - e.target.offsetTop;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      setTimeout(()=>ripple.remove(),600);
+    });
+  });
 
   renderWorks();
 });
