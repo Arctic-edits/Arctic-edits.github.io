@@ -15,6 +15,11 @@ const works = [
     'https://i.ibb.co/VcHmLMbV/TCI-00000.jpg']}
 ];
 
+const otherProjects = [
+  {title:'WIP', tag:'W.I.P'},
+  {title:'WIP', tag:'W.I.P'}
+];
+
 function renderWorks(){
   const grid = document.getElementById('grid');
   works.forEach((w,i)=>{
@@ -32,6 +37,17 @@ function renderWorks(){
         </div>
       </div>`;
     grid.appendChild(el);
+  });
+
+  const otherGrid = document.getElementById('otherGrid');
+  otherProjects.forEach(p=>{
+    const el = document.createElement('div');
+    el.className='work';
+    el.innerHTML = `
+      <div class="thumb" style="background:#1f2937;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#94a3b8">
+        ${p.title} • ${p.tag}
+      </div>`;
+    otherGrid.appendChild(el);
   });
 }
 
@@ -52,56 +68,13 @@ document.getElementById('modal').addEventListener('click', e=>{
   if(e.target.id==='modal') closeModal();
 });
 
-// Featured image fullscreen
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', ()=>{
   renderWorks();
 
-  const featuredImage = document.getElementById('featuredImage');
-  featuredImage.addEventListener('click', () => {
-    const overlay = document.createElement("div");
-    overlay.style.position="fixed";
-    overlay.style.inset="0";
-    overlay.style.background="rgba(0,0,0,0.9)";
-    overlay.style.display="flex";
-    overlay.style.alignItems="center";
-    overlay.style.justifyContent="center";
-    overlay.style.zIndex="100";
-    overlay.style.cursor="zoom-out";
-
-    const img = document.createElement("img");
-    img.src = featuredImage.style.backgroundImage.slice(5,-2);
-    img.style.maxWidth="90%";
-    img.style.maxHeight="90%";
-    img.style.borderRadius="10px";
-    img.style.boxShadow="0 0 30px rgba(0,0,0,0.6)";
-    overlay.appendChild(img);
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener("click", ()=>overlay.remove());
-  });
-
-  // Contact Me modal
-  const contactBtn = document.getElementById('contactBtn');
-  const contactModal = document.getElementById('contactModal');
-  const closeContact = document.getElementById('closeContact');
-
-  contactBtn.addEventListener('click', () => contactModal.classList.add('show'));
-  closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
-
-  // Fade-in animation on scroll
-  const fadeEls = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver(entries=>{
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, {threshold:0.1});
-  fadeEls.forEach(el=>observer.observe(el));
-
-  // Smooth button click animation
-  document.querySelectorAll(".btn").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      btn.classList.add("clicked");
-      setTimeout(()=>btn.classList.remove("clicked"), 200);
-    });
-  });
-});
+  document.querySelectorAll('.fade
