@@ -43,10 +43,12 @@ function openModal(i){
   document.getElementById('modalTitle').textContent = works[i].title + ' • ' + works[i].tag;
   modal.scrollTop = 0;
   modal.classList.add('show');
+  document.body.classList.add('modal-open'); // disable background scroll
 }
 
 function closeModal(){ 
   document.getElementById('modal').classList.remove('show'); 
+  document.body.classList.remove('modal-open'); // re-enable scroll
 }
 
 document.getElementById('modal').addEventListener('click', e=>{
@@ -63,8 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactModal = document.getElementById('contactModal');
   const closeContact = document.getElementById('closeContact');
 
-  hireBtn.addEventListener('click', () => contactModal.classList.add('show'));
-  closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
+  if (hireBtn && contactModal && closeContact) {
+    hireBtn.addEventListener('click', () => contactModal.classList.add('show'));
+    closeContact.addEventListener('click', () => contactModal.classList.remove('show'));
+  }
 
   // Featured image fullscreen
   const featuredImg = document.getElementById('featuredImage');
@@ -82,8 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const ripple = document.createElement('span');
       ripple.classList.add('ripple');
       this.appendChild(ripple);
-      const x = e.clientX - e.target.offsetLeft;
-      const y = e.clientY - e.target.offsetTop;
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
       ripple.style.left = `${x}px`;
       ripple.style.top = `${y}px`;
       setTimeout(()=>ripple.remove(),600);
