@@ -238,6 +238,7 @@ nav {
   background: rgba(0, 0, 0, 0.8);
   z-index: 9999;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .modal.show,
@@ -260,7 +261,7 @@ body.modal-open {
   display: flex;
   flex-direction: column;
   max-height: 90vh;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .modal-scroll {
@@ -354,4 +355,13 @@ footer {
   .brand h1 {
     font-size: 16px;
   }
+}
+
+.info-card a {
+  color: var(--accent);
+}
+
+.info-card p {
+  line-height: 1.6;
+  color: #d6e4f3;
 }

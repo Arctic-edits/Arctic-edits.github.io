@@ -33,8 +33,33 @@ const works = [
   }
 ];
 
+const editingStory = `
+  <p>
+    I started editing for fun, testing ideas and learning what makes a clip feel impactful. What began as a hobby quickly turned into a real creative focus for me.
+  </p>
+  <p>
+    I currently edit with <strong>After Effects 2024</strong>, where I build motion-heavy edits with strong pacing, clean transitions, and cinematic style. I enjoy turning raw footage into something polished and memorable.
+  </p>
+  <p>
+    Check out my editing profile here: 
+    <a href="https://www.tiktok.com/@holdkin" target="_blank" rel="noopener noreferrer">@holdkin on TikTok</a>.
+  </p>
+`;
+
+const zone14Info = `
+  <p>
+    In <strong>Zone: 14 Occult Conflict</strong>, I work as a <strong>scripter</strong>, helping build gameplay systems and features.
+  </p>
+  <p>
+    Play the game here:
+    <a href="https://www.roblox.com/games/84207991479796/Zone-14-Occult-Conflict" target="_blank" rel="noopener noreferrer">Zone: 14 Occult Conflict on Roblox</a>.
+  </p>
+`;
+
 function renderWorks() {
   const grid = document.getElementById('grid');
+  if (!grid) return;
+
   grid.innerHTML = '';
   works.forEach((w, i) => {
     const el = document.createElement('div');
@@ -69,8 +94,22 @@ function closeModal() {
   document.body.classList.remove('modal-open');
 }
 
+function openInfoModal(title, bodyHtml) {
+  document.getElementById('infoModalTitle').textContent = title;
+  document.getElementById('infoModalBody').innerHTML = bodyHtml;
+  document.getElementById('infoModal').classList.add('show');
+}
+
+function closeInfoModal() {
+  document.getElementById('infoModal').classList.remove('show');
+}
+
 document.getElementById('modal').addEventListener('click', e => {
   if (e.target.id === 'modal') closeModal();
+});
+
+document.getElementById('infoModal').addEventListener('click', e => {
+  if (e.target.id === 'infoModal') closeInfoModal();
 });
 
 function scrollToWorks() {
