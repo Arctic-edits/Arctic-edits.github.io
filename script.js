@@ -35,10 +35,10 @@ const works = [
 
 const editingStory = `
   <p>
-    I started editing for fun, testing ideas and learning what makes a clip feel impactful. What began as a hobby quickly turned into a real creative focus for me.
+    I started editing for fun and still mainly do. Its one of my hobby I really enjoy and I just keep improving over time. 
   </p>
   <p>
-    I currently edit with <strong>After Effects 2024</strong>, where I build motion-heavy edits with strong pacing, clean transitions, and cinematic style. I enjoy turning raw footage into something polished and memorable.
+    I currently edit with <strong>After Effects 2024</strong>, where I make different style edits from long cinematic projects to shorter ones. I just enjoy doing it overall.
   </p>
   <p>
     Check out my editing profile here: 
