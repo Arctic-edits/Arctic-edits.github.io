@@ -340,25 +340,7 @@ footer {
 
 /* === ANIMATIONS === */
 .fade-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.js-enabled .fade-in {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.js-enabled .fade-in.is-visible {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.fade-in.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  animation: fadeInUp 0.7s ease both;
 }
 
 .grid .work {

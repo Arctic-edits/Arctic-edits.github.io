@@ -41,10 +41,6 @@ const editingStory = `
   </p>
   <p>
     I currently edit with <strong>After Effects 2024</strong>, where I build motion-heavy edits with strong pacing, clean transitions, and cinematic style. I enjoy turning raw footage into something polished and memorable.
-    I started editing for fun and still mainly do. Its one of my hobby I really enjoy and I just keep improving over time. 
-  </p>
-  <p>
-    I currently edit with <strong>After Effects 2024</strong>, where I make different style edits from long cinematic projects to shorter ones. I just enjoy doing it overall.
   </p>
   <p>
     Check out my editing profile here: 
