@@ -1,3 +1,5 @@
+document.documentElement.classList.add('js-enabled');
+
 const works = [
   {
     title: 'METROPOLITAN PD (ER:LC) Commission',
@@ -155,6 +157,45 @@ function initReactiveBackground() {
   }, { passive: true });
 }
 
+function initRevealAnimations() {
+  const revealItems = document.querySelectorAll('.fade-in, .work');
+  if (!('IntersectionObserver' in window)) {
+    revealItems.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealItems.forEach((el, i) => {
+    el.style.transitionDelay = `${Math.min(i * 45, 300)}ms`;
+    observer.observe(el);
+  });
+}
+function openInfoModal(title, bodyHtml) {
+  document.getElementById('infoModalTitle').textContent = title;
+  document.getElementById('infoModalBody').innerHTML = bodyHtml;
+  document.getElementById('infoModal').classList.add('show');
+}
+
+function closeInfoModal() {
+  document.getElementById('infoModal').classList.remove('show');
+}
+
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target.id === 'modal') closeModal();
+});
+
+document.getElementById('infoModal').addEventListener('click', e => {
+  if (e.target.id === 'infoModal') closeInfoModal();
+});
+
 function scrollToWorks() {
   const worksEl = document.getElementById('works');
   if (worksEl) worksEl.scrollIntoView({ behavior: 'smooth' });
@@ -163,6 +204,7 @@ function scrollToWorks() {
 document.addEventListener('DOMContentLoaded', () => {
   renderWorks();
   initReactiveBackground();
+  initRevealAnimations();
 
   const modal = document.getElementById('modal');
   const infoModal = document.getElementById('infoModal');
