@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="reactive-bg" aria-hidden="true"></div>
   <div class="wrap">
     <header>
       <div class="brand">
@@ -86,6 +87,11 @@
     <div class="modal-card" id="modalCard">
       <button class="closeModal" onclick="closeModal()">✕</button>
       <div id="modalImages"></div>
+      <div class="modal-gallery-controls" id="modalGalleryControls">
+        <button class="btn" id="prevImageBtn" type="button">← Prev</button>
+        <span id="modalImageCounter" class="tag">1 / 1</span>
+        <button class="btn" id="nextImageBtn" type="button">Next →</button>
+      </div>
       <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
         <div style="color:var(--muted);font-size:13px" id="modalTitle">Title</div>
         <div style="font-weight:700">Arctic Edits</div>

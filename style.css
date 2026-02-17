@@ -6,6 +6,8 @@
   --glass: rgba(255, 255, 255, 0.04);
   --radius: 14px;
   --maxw: 1200px;
+  --mx: 50%;
+  --my: 40%;
 }
 
 /* === GLOBAL RESET === */
@@ -25,6 +27,21 @@ body {
   color: #e6eef6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+.reactive-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(500px circle at var(--mx) var(--my), rgba(123, 224, 255, 0.15), transparent 60%),
+    radial-gradient(380px circle at calc(var(--mx) - 18%) calc(var(--my) + 16%), rgba(111, 155, 255, 0.12), transparent 65%),
+    linear-gradient(180deg, #0b1020 0%, #061021 100%);
+  transition: background-position 120ms linear;
 }
 
 /* === WRAPPER & HEADER === */
@@ -32,6 +49,7 @@ body {
   max-width: var(--maxw);
   margin: 40px auto;
   padding: 28px;
+  animation: floatIn 0.8s ease both;
 }
 
 header {
@@ -96,11 +114,13 @@ nav {
   font-weight: 600;
   position: relative;
   overflow: hidden;
-  transition: 0.2s;
+  transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn:hover {
-  opacity: 0.8;
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(123, 224, 255, 0.15);
 }
 
 .btn.primary {
@@ -210,6 +230,13 @@ nav {
   cursor: pointer;
   overflow: hidden;
   position: relative;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.work:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(123, 224, 255, 0.35);
+  box-shadow: 0 18px 35px rgba(3, 12, 30, 0.45);
 }
 
 .work .thumb {
@@ -295,6 +322,15 @@ body.modal-open {
   margin-bottom: 12px;
 }
 
+.modal-gallery-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
 /* === FOOTER === */
 footer {
   margin-top: 24px;
@@ -305,21 +341,19 @@ footer {
 /* === ANIMATIONS === */
 .fade-in {
   opacity: 0;
-  transform: translateY(15px);
-  animation: fadeInUp 0.6s ease forwards;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .grid .work {
-  opacity: 0;
-  transform: translateY(15px);
-  animation: fadeInUp 0.6s ease forwards;
+  opacity: 1;
+  transform: translateY(0);
 }
-
-.grid .work:nth-child(1) { animation-delay: 0.1s; }
-.grid .work:nth-child(2) { animation-delay: 0.2s; }
-.grid .work:nth-child(3) { animation-delay: 0.3s; }
-.grid .work:nth-child(4) { animation-delay: 0.4s; }
-.grid .work:nth-child(5) { animation-delay: 0.5s; }
 
 .contact-page,
 .contact-card {
@@ -329,6 +363,17 @@ footer {
 }
 
 @keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);

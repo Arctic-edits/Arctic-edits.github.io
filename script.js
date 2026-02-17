@@ -63,7 +63,7 @@ function renderWorks() {
   grid.innerHTML = '';
   works.forEach((w, i) => {
     const el = document.createElement('div');
-    el.className = 'work';
+    el.className = 'work fade-in';
     el.innerHTML = `
       <div class="thumb" style="background-image:url('${w.src[0]}')"></div>
       <div class="meta">
@@ -79,12 +79,26 @@ function renderWorks() {
   });
 }
 
+function updateModalImage() {
+  const modalImages = document.getElementById('modalImages');
+  const counter = document.getElementById('modalImageCounter');
+  const controls = document.getElementById('modalGalleryControls');
+  const images = works[activeWorkIndex].src;
+  const current = images[activeImageIndex];
+
+  modalImages.innerHTML = `<img src='${current}' alt='${works[activeWorkIndex].title}'>`;
+  counter.textContent = `${activeImageIndex + 1} / ${images.length}`;
+  controls.style.display = images.length > 1 ? 'flex' : 'none';
+
+  document.getElementById('modalTitle').textContent = `${works[activeWorkIndex].title} • ${works[activeWorkIndex].tag}`;
+}
+
 function openModal(i) {
   const modal = document.getElementById('modal');
-  const modalImages = document.getElementById('modalImages');
-  modalImages.innerHTML = works[i].src.map(s => `<img src='${s}' alt='${works[i].title}'>`).join('');
-  document.getElementById('modalTitle').textContent = `${works[i].title} • ${works[i].tag}`;
-  modal.scrollTop = 0;
+  activeWorkIndex = i;
+  activeImageIndex = 0;
+  updateModalImage();
+
   modal.classList.add('show');
   document.body.classList.add('modal-open');
 }
@@ -113,13 +127,53 @@ document.getElementById('infoModal').addEventListener('click', e => {
 });
 
 function scrollToWorks() {
-  document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
+  const worksEl = document.getElementById('works');
+  if (worksEl) worksEl.scrollIntoView({ behavior: 'smooth' });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   renderWorks();
+  initReactiveBackground();
+  initRevealAnimations();
 
-  // Featured image fullscreen
+  const modal = document.getElementById('modal');
+  const infoModal = document.getElementById('infoModal');
+  const nextBtn = document.getElementById('nextImageBtn');
+  const prevBtn = document.getElementById('prevImageBtn');
+
+  if (modal) {
+    modal.addEventListener('click', e => {
+      if (e.target.id === 'modal') closeModal();
+    });
+  }
+
+  if (infoModal) {
+    infoModal.addEventListener('click', e => {
+      if (e.target.id === 'infoModal') closeInfoModal();
+    });
+  }
+
+  if (nextBtn) nextBtn.addEventListener('click', showNextImage);
+  if (prevBtn) prevBtn.addEventListener('click', showPrevImage);
+
+  document.addEventListener('keydown', e => {
+    if (!modal || !modal.classList.contains('show')) return;
+    if (e.key === 'ArrowRight') showNextImage();
+    if (e.key === 'ArrowLeft') showPrevImage();
+    if (e.key === 'Escape') closeModal();
+  });
+
+  document.querySelectorAll('[data-project]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const project = btn.getAttribute('data-project');
+      if (project === 'after-effects') {
+        openInfoModal('After Effects Editing', editingStory);
+      } else if (project === 'zone-14') {
+        openInfoModal('Zone: 14 Occult Conflict', zone14Info);
+      }
+    });
+  });
+
   const featuredImg = document.getElementById('featuredImage');
   if (featuredImg) {
     featuredImg.addEventListener('click', () => {
@@ -127,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Ripple effect
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', function (e) {
       const ripple = document.createElement('span');
