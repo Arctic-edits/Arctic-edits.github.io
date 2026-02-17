@@ -350,9 +350,9 @@ footer {
 
 .contact-page,
 .contact-card {
-  opacity: 0;
-  transform: translateY(15px);
-  animation: fadeInUp 0.6s ease forwards;
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInUp 0.6s ease;
 }
 
 @keyframes fadeInUp {
