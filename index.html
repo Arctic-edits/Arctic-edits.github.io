@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="reactive-bg" aria-hidden="true"></div>
   <div class="wrap">
     <header>
       <div class="brand">
@@ -56,15 +57,21 @@
         <h3>Other Projects</h3>
         <div class="grid">
           <div class="work">
-            <div class="thumb" style="background-color:#0f1724;height:160px;display:flex;align-items:center;justify-content:center;color:var(--muted)">W.I.P</div>
+            <div class="thumb" style="background-color:#0f1724;height:160px;display:flex;align-items:center;justify-content:center;color:var(--muted)">After Effects Editing</div>
             <div class="meta">
-              <div><strong>W.I.P</strong><div class="tag">W.I.P</div></div>
+              <div><strong>After Effects Editor</strong><div class="tag">Video Editing</div></div>
+              <div>
+                <button class="btn" data-project="after-effects">Open</button>
+              </div>
             </div>
           </div>
           <div class="work">
-            <div class="thumb" style="background-color:#0f1724;height:160px;display:flex;align-items:center;justify-content:center;color:var(--muted)">W.I.P</div>
+            <div class="thumb" style="background-color:#0f1724;height:160px;display:flex;align-items:center;justify-content:center;color:var(--muted)">Zone: 14 Development</div>
             <div class="meta">
-              <div><strong>W.I.P</strong><div class="tag">W.I.P</div></div>
+              <div><strong>Zone: 14 Game Development</strong><div class="tag">Scripter</div></div>
+              <div>
+                <button class="btn" data-project="zone-14">Open</button>
+              </div>
             </div>
           </div>
         </div>
@@ -80,10 +87,23 @@
     <div class="modal-card" id="modalCard">
       <button class="closeModal" onclick="closeModal()">✕</button>
       <div id="modalImages"></div>
+      <div class="modal-gallery-controls" id="modalGalleryControls">
+        <button class="btn" id="prevImageBtn" type="button">← Prev</button>
+        <span id="modalImageCounter" class="tag">1 / 1</span>
+        <button class="btn" id="nextImageBtn" type="button">Next →</button>
+      </div>
       <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
         <div style="color:var(--muted);font-size:13px" id="modalTitle">Title</div>
         <div style="font-weight:700">Arctic Edits</div>
       </div>
+    </div>
+  </div>
+
+  <div class="contact-modal" id="infoModal">
+    <div class="contact-card info-card">
+      <button class="closeModal" onclick="closeInfoModal()">✕</button>
+      <h3 id="infoModalTitle">Project</h3>
+      <div id="infoModalBody"></div>
     </div>
   </div>
 
