@@ -35,10 +35,10 @@ const works = [
 
 const editingStory = `
   <p>
-    I started editing for fun, testing ideas and learning what makes a clip feel impactful. What began as a hobby quickly turned into a real creative focus for me.
+    I started editing for fun and still mainly do. Its one of my hobby I really enjoy and I just keep improving over time. 
   </p>
   <p>
-    I currently edit with <strong>After Effects 2024</strong>, where I build motion-heavy edits with strong pacing, clean transitions, and cinematic style. I enjoy turning raw footage into something polished and memorable.
+    I currently edit with <strong>After Effects 2024</strong>, where I make different style edits from long cinematic projects to shorter ones. I just enjoy doing it overall.
   </p>
   <p>
     Check out my editing profile here: 
@@ -55,9 +55,6 @@ const zone14Info = `
     <a href="https://www.roblox.com/games/84207991479796/Zone-14-Occult-Conflict" target="_blank" rel="noopener noreferrer">Zone: 14 Occult Conflict on Roblox</a>.
   </p>
 `;
-
-let activeWorkIndex = 0;
-let activeImageIndex = 0;
 
 function renderWorks() {
   const grid = document.getElementById('grid');
@@ -111,71 +108,23 @@ function closeModal() {
   document.body.classList.remove('modal-open');
 }
 
-function showNextImage() {
-  const images = works[activeWorkIndex].src;
-  activeImageIndex = (activeImageIndex + 1) % images.length;
-  updateModalImage();
-}
-
-function showPrevImage() {
-  const images = works[activeWorkIndex].src;
-  activeImageIndex = (activeImageIndex - 1 + images.length) % images.length;
-  updateModalImage();
-}
-
 function openInfoModal(title, bodyHtml) {
-  const titleEl = document.getElementById('infoModalTitle');
-  const bodyEl = document.getElementById('infoModalBody');
-  const modal = document.getElementById('infoModal');
-  if (!titleEl || !bodyEl || !modal) return;
-
-  titleEl.textContent = title;
-  bodyEl.innerHTML = bodyHtml;
-  modal.classList.add('show');
+  document.getElementById('infoModalTitle').textContent = title;
+  document.getElementById('infoModalBody').innerHTML = bodyHtml;
+  document.getElementById('infoModal').classList.add('show');
 }
 
 function closeInfoModal() {
-  const modal = document.getElementById('infoModal');
-  if (modal) modal.classList.remove('show');
+  document.getElementById('infoModal').classList.remove('show');
 }
 
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target.id === 'modal') closeModal();
+});
 
-function initReactiveBackground() {
-  const updatePosition = (x, y) => {
-    const px = `${(x / window.innerWidth) * 100}%`;
-    const py = `${(y / window.innerHeight) * 100}%`;
-    document.documentElement.style.setProperty('--mx', px);
-    document.documentElement.style.setProperty('--my', py);
-  };
-
-  window.addEventListener('pointermove', e => updatePosition(e.clientX, e.clientY));
-  window.addEventListener('touchmove', e => {
-    if (!e.touches || !e.touches[0]) return;
-    updatePosition(e.touches[0].clientX, e.touches[0].clientY);
-  }, { passive: true });
-}
-
-function initRevealAnimations() {
-  const revealItems = document.querySelectorAll('.fade-in, .work');
-  if (!('IntersectionObserver' in window)) {
-    revealItems.forEach(el => el.classList.add('is-visible'));
-    return;
-  }
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  revealItems.forEach((el, i) => {
-    el.style.transitionDelay = `${Math.min(i * 45, 300)}ms`;
-    observer.observe(el);
-  });
-}
+document.getElementById('infoModal').addEventListener('click', e => {
+  if (e.target.id === 'infoModal') closeInfoModal();
+});
 
 function scrollToWorks() {
   const worksEl = document.getElementById('works');
